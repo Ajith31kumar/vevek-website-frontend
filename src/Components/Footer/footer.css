@@ -1,0 +1,189 @@
+/* Footer Container */
+.footer-container {
+  background-color: #121111;
+  color: white;
+  padding: 40px 20px;
+  text-align: center;
+}
+
+/* Footer Top Section */
+.footer-top {
+  display: flex;
+  flex-wrap: wrap; /* Ensures wrapping on smaller screens */
+  justify-content: space-between;
+  border-bottom: 1px solid #333;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+}
+
+/* Footer Sections */
+.footer-brand, .footer-links, .footer-cta {
+  flex: 1;
+  min-width: 250px; /* Prevents items from getting too small */
+  margin: 10px;
+}
+
+/* Brand Title */
+.footer-brand h3 {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+/* Section Headings */
+.footer-links h4, .footer-cta h4 {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* Footer Links */
+.footer-links ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-links ul li {
+  margin: 8px 0;
+}
+
+.footer-links ul li a {
+  color: #ccc;
+  text-decoration: none;
+  transition: color 0.3s ease-in-out;
+}
+
+.footer-links ul li a:hover {
+  color: #06D6A0;
+}
+
+/* Register Button */
+.register-btn {
+  display: inline-block;
+  background-color: #E63946;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-weight: bold;
+  text-decoration: none;
+  transition: background 0.3s ease-in-out;
+}
+
+.register-btn:hover {
+  background-color: #c5303c;
+}
+
+/* Footer Bottom Section */
+.footer-bottom {
+  text-align: center;
+  font-size: 14px;
+  color: #bbb;
+}
+
+/* Footer Policies */
+.footer-policies {
+  margin: 10px 0;
+}
+
+.footer-policies a {
+  color: #bbb;
+  text-decoration: none;
+  margin: 0 10px;
+  transition: color 0.3s ease-in-out;
+}
+
+.footer-policies a:hover {
+  color: #06D6A0;
+}
+
+/* Disclaimer */
+.footer-disclaimer {
+  font-size: 12px;
+  color: #777;
+}
+
+/* Back to Top Button */
+.back-to-top {
+  text-align: center;
+  margin-top: 20px;
+}
+
+#backToTop {
+  background-color: #6a6262;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 10%;
+  font-size: 20px;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out;
+}
+
+#backToTop:hover {
+  background-color: #555;
+}
+
+/* 🔥 RESPONSIVE DESIGN FOR ALL DEVICES */
+
+/* Tablets & Medium Screens */
+@media (max-width: 1024px) {
+  .footer-top {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .footer-brand, .footer-links, .footer-cta {
+    max-width: 90%;
+  }
+}
+
+/* Mobile Devices */
+@media (max-width: 768px) {
+  .footer-container {
+    padding: 30px 15px;
+  }
+
+  .footer-top {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .footer-brand, .footer-links, .footer-cta {
+    text-align: center;
+    max-width: 100%;
+  }
+
+  .register-btn {
+    font-size: 16px;
+    padding: 8px 16px;
+  }
+
+  .footer-bottom {
+    font-size: 12px;
+  }
+
+  #backToTop {
+    font-size: 18px;
+    padding: 10px;
+  }
+}
+
+/* Small Phones */
+@media (max-width: 480px) {
+  .footer-brand h3 {
+    font-size: 20px;
+  }
+
+  .footer-links h4, .footer-cta h4 {
+    font-size: 16px;
+  }
+
+  .register-btn {
+    font-size: 14px;
+    padding: 6px 14px;
+  }
+
+  #backToTop {
+    font-size: 16px;
+    padding: 8px;
+  }
+}

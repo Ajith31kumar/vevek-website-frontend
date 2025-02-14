@@ -1,0 +1,149 @@
+/* Full white background */
+.faq-background {
+  background: white;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+/* FAQ container (no background, starts from the top) */
+.faq-container {
+  max-width: 800px; /* Increased width for larger screens */
+  width: 90%;
+  padding: 20px;
+  border-radius: 12px;
+}
+
+/* FAQ heading */
+.faq-heading {
+  text-align: center;
+  font-size: 36px;
+  font-weight: bolder;
+  margin-bottom: 20px;
+  color: #1D3557;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* FAQ item */
+.faq-item {
+  margin-bottom: 12px; /* Space between each FAQ */
+  border-bottom: 1px solid #ddd; /* Light divider */
+  padding-bottom: 10px;
+}
+
+/* FAQ button - Increased width */
+.faq-button {
+  width: 100%;
+  padding: 16px 24px; /* Adjusted padding for better touch experience */
+  border: none;
+  outline: none;
+  cursor: pointer;
+  text-align: left;
+  font-size: 18px;
+  font-family: Arial, sans-serif;
+  font-weight: 800;
+  color: #1D3557;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #f5f5f5;
+  border-radius: 8px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  transition: background 0.2s, transform 0.1s;
+  min-width: 100%; /* Ensures full width */
+  max-width: 900px;
+}
+
+/* Button hover effect */
+.faq-button:hover {
+  background: #e8e8e8;
+  transform: scale(1.02); /* Slight zoom effect */
+}
+
+/* Question text styling */
+.faq-question {
+  font-size: 18px;
+  font-weight: 800;
+  color: #1D3557;
+}
+
+/* Arrow positioning */
+.faq-arrow {
+  margin-left: auto; /* Push arrow to the right */
+}
+
+/* FAQ answer */
+.faq-answer {
+  font-size: 16px;
+  font-family: Arial, sans-serif;
+  color: #525252;
+  padding: 10px 16px;
+  font-weight: 600;
+  display: none;
+}
+
+/* Show answer when open */
+.faq-item.open .faq-answer {
+  display: block;
+}
+
+/* 🔥 RESPONSIVE DESIGN FOR ALL DEVICES */
+
+/* Tablets & Medium Screens */
+@media (max-width: 1024px) {
+  .faq-container {
+    max-width: 90%;
+  }
+
+  .faq-heading {
+    font-size: 32px;
+  }
+
+  .faq-button {
+    font-size: 16px;
+    padding: 14px 20px;
+  }
+
+  .faq-answer {
+    font-size: 15px;
+  }
+}
+
+/* Mobile Devices */
+@media (max-width: 768px) {
+  .faq-container {
+    width: 95%;
+  }
+
+  .faq-heading {
+    font-size: 28px;
+  }
+
+  .faq-button {
+    font-size: 16px;
+    padding: 12px 18px;
+  }
+
+  .faq-answer {
+    font-size: 14px;
+  }
+}
+
+/* Small Phones */
+@media (max-width: 480px) {
+  .faq-heading {
+    font-size: 24px;
+  }
+
+  .faq-button {
+    font-size: 15px;
+    padding: 10px 16px;
+  }
+
+  .faq-answer {
+    font-size: 13px;
+  }
+}

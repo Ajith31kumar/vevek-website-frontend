@@ -1,0 +1,191 @@
+/* Athlete.css */
+.container {
+  width: 100%;
+  background-color: #1c1c1c;
+  color: white;
+  font-family: Arial, sans-serif;
+  padding: 40px;
+  text-align: center;
+}
+
+.header h2 {
+  font-size: 40px;
+  font-weight: 800;
+  color: #06D6A0;
+  margin-bottom: 16px;
+
+}
+
+.header .highlight {
+  color: #E63946;
+}
+
+.slider {
+  display: flex;
+  flex-direction: column;
+ 
+  align-items: center;
+}
+
+.slide {
+  width: 100%;  /* Allows it to be responsive */
+  max-width: 800px; /* Increase max-width as needed */
+  border-radius: 16px;
+  padding: 32px;
+  text-align: left;
+  background-color: #262626;
+  margin: 0; 
+}
+
+
+
+
+.icon {
+  font-size: 24px;
+  color: #06D6A0;
+  margin-bottom: 8px;
+}
+
+.testimonial p {
+  font-size: 16px;
+  color: #D1D5DB;
+  margin-bottom: 16px;
+}
+
+.athlete-info .role {
+  font-size: 18px;
+  font-weight: bold;
+  color: #06D6A0  ;
+  margin: 0; 
+}
+.role {
+  font-size: 18px;
+  font-weight: bold;
+  color: #06D6A0  ;
+  margin: 0; 
+}
+
+
+
+.athlete-info .sport {
+  font-size: 14px;
+  color: #A8A8A8;
+}
+
+.cta-section {
+  margin-top: 32px;
+}
+
+.cta-section .cta-text {
+  font-size: 24px;
+  font-weight: bold;
+  color: #E63946;
+}
+
+.cta-button {
+  display: inline-block;
+  background-color: #E63946;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 12px 24px;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.cta-button:hover {
+  background-color: #D74E4E;
+  transform: scale(1.05);
+}
+/* Responsive Design for All Devices */
+@media (max-width: 1024px) {
+  .slide {
+    max-width: 90%;
+    padding: 24px; /* Adjust padding for tablets */
+  }
+
+  .header h2 {
+    font-size: 36px;
+  }
+
+  .testimonial p {
+    font-size: 15px;
+  }
+
+  .cta-section .cta-text {
+    font-size: 22px;
+  }
+
+  .cta-button {
+    font-size: 16px;
+    padding: 10px 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .slide {
+    max-width: 95%;
+    padding: 20px;
+  }
+
+  .header h2 {
+    font-size: 32px;
+  }
+
+  .testimonial p {
+    font-size: 14px;
+  }
+
+  .athlete-info .role {
+    font-size: 16px;
+  }
+
+  .athlete-info .sport {
+    font-size: 13px;
+  }
+
+  .cta-section .cta-text {
+    font-size: 20px;
+  }
+
+  .cta-button {
+    font-size: 15px;
+    padding: 8px 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 20px;
+  }
+
+  .slide {
+    padding: 16px;
+  }
+
+  .header h2 {
+    font-size: 28px;
+  }
+
+  .testimonial p {
+    font-size: 13px;
+  }
+
+  .athlete-info .role {
+    font-size: 15px;
+  }
+
+  .athlete-info .sport {
+    font-size: 12px;
+  }
+
+  .cta-section .cta-text {
+    font-size: 18px;
+  }
+
+  .cta-button {
+    font-size: 14px;
+    padding: 8px 16px;
+  }
+}

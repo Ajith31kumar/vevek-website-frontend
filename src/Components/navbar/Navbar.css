@@ -1,0 +1,138 @@
+/* Navbar Styling */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #000;  /* Black background */
+  padding: 20px 40px;
+  font-family: 'Roboto', sans-serif;
+  width: 100%;  /* Full width */
+  position: fixed;  /* Fix the navbar at the top */
+  top: 0;
+  left: 0;
+  z-index: 1000;  /* Ensure it stays on top */
+}
+
+/* Brand styling */
+.navbar-brand-container {
+  display: flex;
+  justify-content: flex-start;
+  flex: 1;
+}
+
+.navbar-brand {
+  font-size: 28px;
+  color: #fff;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+/* Navbar Links */
+.navbar-links-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;  /* Center the links */
+  flex: 1;  
+}
+
+.navbar-links {
+  display: flex;
+  gap: 25px;
+}
+
+.navbar-link {
+  color: #fff;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: 500;
+  transition: color 0.3s ease-in-out;
+}
+
+.navbar-link:hover {
+  color: #FF6347;  /* Light red hover effect */
+}
+
+/* Register Button */
+.navbar-register {
+  padding: 12px 25px;
+  background-color: #FF6347;
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: 600;
+  border-radius: 5px;
+  margin-left: 30px;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.navbar-register:hover {
+  background-color: #E5533B;  /* Darker red on hover */
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .navbar {
+      padding: 15px 30px;
+  }
+  
+  .navbar-links {
+      gap: 20px;
+  }
+
+  .navbar-register {
+      font-size: 16px;
+      padding: 10px 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar {
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 15px 20px;
+  }
+
+  .navbar-links-container {
+      width: 100%;
+      justify-content: flex-start;
+      margin-top: 10px;
+  }
+
+  .navbar-links {
+      flex-direction: column;
+      gap: 10px;
+  }
+
+  .navbar-link {
+      font-size: 16px;
+  }
+
+  .navbar-register {
+      margin-top: 10px;
+      padding: 10px 18px;
+      font-size: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar {
+      padding: 10px 15px;
+  }
+
+  .navbar-brand {
+      font-size: 24px;
+  }
+
+  .navbar-links {
+      gap: 8px;
+  }
+
+  .navbar-link {
+      font-size: 15px;
+  }
+
+  .navbar-register {
+      padding: 8px 15px;
+      font-size: 15px;
+  }
+}

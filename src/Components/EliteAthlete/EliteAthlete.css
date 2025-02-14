@@ -1,0 +1,184 @@
+/* General Styling */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #111;
+  color: white;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+
+/* Section Container */
+.registration-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 20px;
+}
+
+/* Content Wrapper */
+.content-wrapper {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* Heading */
+.main-heading {
+  font-size: 46px;
+  font-weight: bold;
+}
+
+.highlight {
+  color: #E63946; /* Red for highlighting */
+}
+
+/* Subtext */
+.subtext {
+  font-size: 15px;
+  color: #ccc;
+  margin-top: 10px;
+}
+
+/* Countdown Box */
+.countdown-box1 {
+  background-color: #1D3557;
+  padding: 20px;
+  border-radius: 10px;
+  margin-top: 20px;
+  width: 90%;
+  max-width: 900px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Move Countdown Box to Left on Larger Screens */
+@media (min-width: 1024px) {
+  .countdown-box1 {
+    align-items: flex-start;
+    margin-left: 50px;
+  }
+}
+
+/* Spots Text */
+.spots-text {
+  color: #06D6A0; /* Green */
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+/* Countdown Timer */
+.timer-container {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+.timer-box {
+  background-color: #222;
+  padding: 15px 20px;
+  border-radius: 8px;
+  text-align: center;
+  min-width: 100px;
+}
+
+.timer-value {
+  font-size: 28px;
+  font-weight: bold;
+  color: white;
+}
+
+.timer-label {
+  font-size: 14px;
+  color: #bbb;
+  text-transform: uppercase;
+}
+
+/* Call-to-Action (CTA) */
+.cta-text {
+  font-size: 22px;
+  color: #06D6A0; /* Green */
+  font-weight: bold;
+  margin-top: 20px;
+}
+
+.cta-button {
+  display: inline-block;
+  background-color: #E63946; /* Red */
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 15px 30px;
+  border-radius: 8px;
+  text-decoration: none;
+  margin-top: 20px;
+  transition: 0.3s;
+}
+
+.cta-button:hover {
+  background-color: #cc0000;
+  transform: scale(1.05);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1024px) {
+  .countdown-box1 {
+    align-items: center;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .timer-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .timer-box {
+    width: 100%;
+    max-width: 250px;
+  }
+
+  .cta-button {
+    padding: 12px 24px;
+    font-size: 16px;
+  }
+
+  .main-heading {
+    font-size: 40px;
+  }
+
+  .subtext {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .main-heading {
+    font-size: 32px;
+  }
+
+  .cta-button {
+    width: 90%;
+  }
+
+  .timer-box {
+    padding: 12px 16px;
+  }
+
+  .timer-value {
+    font-size: 24px;
+  }
+
+  .timer-label {
+    font-size: 12px;
+  }
+}
