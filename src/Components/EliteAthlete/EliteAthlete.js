@@ -3,7 +3,7 @@ import "./EliteAthlete.css"; // CSS File Import
 
 // Countdown Timer Component
 const CountdownTimer = () => {
-  const targetDate = new Date("2025-02-09T19:00:00").getTime();
+  const targetDate = new Date("2025-03-02T19:00:00").getTime();
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
 
   useEffect(() => {

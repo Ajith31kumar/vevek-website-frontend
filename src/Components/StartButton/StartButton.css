@@ -1,0 +1,41 @@
+/* Start Button Container */
+.start-button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px; /* Space from other sections */
+}
+
+/* Separate Box around the Button */
+.start-button-box {
+    background-color: #fff; /* White background for the box */
+    padding: 300px; /* Padding inside the box */
+    border-radius: 20px; /* Rounded corners for the box */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Shadow for depth */
+    text-align: center; /* Center the button inside the box */
+    width: fit-content; /* Box adjusts to button size */
+}
+
+/* Start Button Style */
+.start-button {
+    background-color: #ff237a; /* Color of the button */
+    color: white;
+    font-size: 50px;
+    padding: 15px 30px;
+    border-radius: 50px; /* Rounded corners */
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow for depth */
+}
+
+/* Start Button Hover Effect */
+.start-button:hover {
+    background-color: #ff237a; /* Same color on hover */
+    transform: scale(1.1); /* Slight zoom-in effect */
+}
+
+/* Start Button Focus Effect */
+.start-button:focus {
+    outline: none;
+    box-shadow: 0 0 10px #ff237a; /* Focus glow effect */
+}

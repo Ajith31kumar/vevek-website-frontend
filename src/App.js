@@ -1,3 +1,4 @@
+// App.js
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
@@ -13,10 +14,11 @@ import Bonus from "./Components/Bonus/Bonus";
 import EliteAthlete from "./Components/EliteAthlete/EliteAthlete";
 import WebinarCountdown from "./Components/webinarcountdown/WebinarCountdown";
 import FaqSection from "./Components/Faqsection/FaqSection";
-import ReactionGame from "./Components/ReactionGame/ReactionGame";
+import StartButton from "./Components/StartButton/StartButton"; // Import StartButton component
+import ReactionGame from "./Components/ReactionGame/ReactionGame"; // Import ReactionGame component
 
 const Home = () => (
-  <>
+  <div>
     <Webinar />
     <HeroSection />
     <SolutionSection />
@@ -25,10 +27,12 @@ const Home = () => (
     <CredentialsSection />
     <Athlete />
     <Bonus />
-    <ReactionGame />
+    <StartButton />
     <EliteAthlete />
     <FaqSection />
-  </>
+    {/* Add the Start Button */}
+   
+  </div>
 );
 
 const App = () => {
@@ -36,8 +40,8 @@ const App = () => {
     <Router>
       <Navbar />
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/reactiongame" element={<ReactionGame />} />
+        <Route path="/" element={<Home />} /> {/* Home route */}
+        <Route path="/reactiongame" element={<ReactionGame />} /> {/* ReactionGame route */}
       </Routes>
       <Footer />
     </Router>

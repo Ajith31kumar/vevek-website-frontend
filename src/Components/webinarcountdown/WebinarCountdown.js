@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "./WebinarCountdown.css";
 
-const WebinarCountdown = () => {
-  const targetDate = new Date("2025-02-09T19:00:00").getTime();
+const WebinarCountdown = () => {  
+  const targetDate = new Date("2025-03-02T19:00:00").getTime();
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
 
   useEffect(() => {
@@ -32,7 +32,7 @@ const WebinarCountdown = () => {
           <div className="detail-box">
             <div className="icon">📅</div>
             <h3>DATE</h3>
-            <p>9th Feb, 2025</p>
+            <p>2nd March, 2025</p>
           </div>
           <div className="detail-box">
             <div className="icon">⏰</div>

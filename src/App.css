@@ -15,3 +15,38 @@ body {
   background-color: #c72f3b;
 }
 
+/* App.css */
+
+/* Start Button Container */
+.start-button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px; /* Space from other sections */
+}
+
+/* Start Button Style */
+.start-button {
+  background-color: #ff5733; /* Orange color */
+  color: white;
+  font-size: 20px;
+  padding: 15px 30px;
+  border-radius: 50px; /* Rounded corners */
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow for depth */
+}
+
+/* Start Button Hover Effect */
+.start-button:hover {
+  background-color: #e84a28; /* Darker orange on hover */
+  transform: scale(1.1); /* Slight zoom-in effect */
+}
+
+/* Start Button Focus Effect */
+.start-button:focus {
+  outline: none;
+  box-shadow: 0 0 10px #ff5733; /* Focus glow effect */
+}
+
+
