@@ -1,7 +1,7 @@
 /* Navbar Styling */
 .navbar {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-between; /* Equal spacing between brand, links & button */
   align-items: center;
   background-color: #000;  /* Black background */
   padding: 20px 40px;
@@ -14,30 +14,22 @@
 }
 
 /* Brand styling */
-.navbar-brand-container {
-  display: flex;
-  justify-content: flex-start;
-  flex: 1;
-}
-
 .navbar-brand {
   font-size: 28px;
   color: #fff;
   font-weight: 700;
   text-decoration: none;
+  flex: 1; /* Takes equal space */
+  text-align: left;
 }
 
 /* Navbar Links */
-.navbar-links-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;  /* Center the links */
-  flex: 1;  
-}
-
 .navbar-links {
   display: flex;
   gap: 25px;
+  flex: 2; /* Center the links with equal space */
+  justify-content: center;
+  margin-right: 200px; 
 }
 
 .navbar-link {
@@ -53,21 +45,27 @@
 }
 
 /* Register Button */
+/* Register Button */
 .navbar-register {
-  padding: 12px 25px;
+  padding: 8px 12px;  /* Reduced padding */
   background-color: #FF6347;
   color: white;
   text-decoration: none;
-  font-size: 18px;
+  font-size: 14px;  /* Smaller font */
   font-weight: 600;
   border-radius: 5px;
-  margin-left: 30px;
+  max-width: 120px; /* Restrict button width */
   transition: background-color 0.3s ease-in-out;
+
+  /* Move slightly to the left */
+  margin-right: 80px; 
 }
 
 .navbar-register:hover {
   background-color: #E5533B;  /* Darker red on hover */
 }
+
+
 
 /* Responsive Design */
 @media (max-width: 1024px) {
@@ -88,13 +86,13 @@
 @media (max-width: 768px) {
   .navbar {
       flex-direction: column;
-      align-items: flex-start;
+      align-items: center;
       padding: 15px 20px;
   }
 
-  .navbar-links-container {
+  .navbar-links {
       width: 100%;
-      justify-content: flex-start;
+      justify-content: center;
       margin-top: 10px;
   }
 
@@ -121,6 +119,7 @@
 
   .navbar-brand {
       font-size: 24px;
+      text-align: center;
   }
 
   .navbar-links {
@@ -134,5 +133,6 @@
   .navbar-register {
       padding: 8px 15px;
       font-size: 15px;
+      text-align: center;
   }
 }

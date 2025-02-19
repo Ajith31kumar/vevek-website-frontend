@@ -4,9 +4,7 @@ import "./CredentialsSection.css"; // Import the custom CSS file
 const CredentialsSection = () => {
   return (
     <section id="credentials">
-      {/* Background Decorative Elements */}
-      <div className="background-circle top-left"></div>
-      <div className="background-circle bottom-right"></div>
+   
 
       <div className="container1">
         <div className="text-center">
@@ -14,7 +12,7 @@ const CredentialsSection = () => {
         </div>
 
         <div className="grid-container">
-          {/* Credentials Grid */}
+          {/* Left Section */}
           <div className="left-section">
             {[
               { icon: "🏆", title: "Certified Sports Optometrist", desc: "HAC Jerusalem" },
@@ -24,7 +22,7 @@ const CredentialsSection = () => {
               <div key={index} className="credential-card fadeInLeft">
                 <div className="icon-container">
                   <span className="icon">{item.icon}</span>
-                  <div>
+                  <div className="text-container">
                     <h3 className="card-title">{item.title}</h3>
                     <p className="card-desc">{item.desc}</p>
                   </div>
@@ -33,7 +31,7 @@ const CredentialsSection = () => {
             ))}
           </div>
 
-          {/* Results Grid */}
+          {/* Right Section */}
           <div className="right-section">
             {[
               { icon: "👀", title: "Trained 40+ athletes", desc: "in 2 offline programs" },
@@ -43,7 +41,7 @@ const CredentialsSection = () => {
               <div key={index} className="credential-card dark-card fadeInRight">
                 <div className="icon-container">
                   <span className="icon green">{item.icon}</span>
-                  <div>
+                  <div className="text-container">
                     <h3 className="card-title white">{item.title}</h3>
                     <p className="card-desc light">{item.desc}</p>
                   </div>

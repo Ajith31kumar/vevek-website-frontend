@@ -48,5 +48,17 @@ body {
   outline: none;
   box-shadow: 0 0 10px #ff5733; /* Focus glow effect */
 }
+html, body {
+  overflow-x: hidden; /* Hides horizontal scroll */
+  width: 100%; /* Ensures full width */
+}
+
+/* Prevent extra width issues */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  max-width: 100%;
+}
 
 
