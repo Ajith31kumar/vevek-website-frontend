@@ -45,51 +45,96 @@ const Form = ({ setFormData, handleFormSubmit }) => {
   );
 };
 
-const Leaderboard = () => {
+const Leaderboard = ({ currentUser }) => {
   const [leaderboard, setLeaderboard] = useState([]);
+  const [userRank, setUserRank] = useState(null);
 
+  // Fetch leaderboard data
   useEffect(() => {
     const fetchLeaderboard = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/leaderboard");
-        setLeaderboard(response.data);
+        const response = await axios.get("http://localhost:5002/leaderboard");
+        const sortedLeaderboard = response.data.sort((a, b) => b.bestPoints - a.bestPoints);
+        setLeaderboard(sortedLeaderboard);
+
+        // Ensure email is defined before comparing
+        const rank = sortedLeaderboard.findIndex(player => 
+          player.email && currentUser?.email && 
+          player.email.trim().toLowerCase() === currentUser.email.trim().toLowerCase()
+        ) + 1;
+
+        if (rank > 0) {
+          setUserRank({ ...sortedLeaderboard[rank - 1], rank });
+        }
       } catch (error) {
         console.error("Error fetching leaderboard:", error);
       }
     };
-
     fetchLeaderboard();
-  }, []);
+  }, [currentUser]);
 
   return (
-    <div className="leaderboard">
-      <h2>Leaderboard</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>Rank</th>
-            <th>Name</th>
-            <th>Best Points</th>
-            <th>Average Points</th>
-          </tr>
-        </thead>
-        <tbody>
-          {leaderboard.length > 0 ? (
-            leaderboard.map((player, index) => (
-              <tr key={index}>
-                <td>{index + 1}</td>
-                <td>{player.name}</td>
-                <td>{player.bestPoints.toFixed(3)}</td>
-                <td>{player.averagePoints.toFixed(3)}</td>
-              </tr>
-            ))
-          ) : (
+    <div className="leaderboard-container">
+      <div className="leaderboard">
+        <h2>Leaderboard</h2>
+        <table>
+          <thead>
             <tr>
-              <td colSpan="4">Loading...</td>
+              <th>Rank</th>
+              <th>Name</th>
+              <th>Best Points</th>
+              <th>Average Points</th>
             </tr>
-          )}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {leaderboard.length > 0 ? (
+              leaderboard.map((player, index) => (
+                <tr 
+                  key={index} 
+                  className={player.email && currentUser?.email &&
+                             player.email.trim().toLowerCase() === currentUser.email.trim().toLowerCase() 
+                             ? "highlight" 
+                             : ""}
+                >
+                  <td>{index + 1}</td>
+                  <td>{player.name}</td>
+                  <td>{player.bestPoints.toFixed(3)}</td>
+                  <td>{player.averagePoints.toFixed(3)}</td>
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td colSpan="4">Loading...</td>
+              </tr>
+            )}
+          </tbody>
+        </table>
+      </div>
+
+      {/* Separate Section for Current User */}
+      {userRank && (
+        <div className="current-user-section">
+          <h3>Your Rank</h3>
+          <table className="current-user-table">
+            <thead>
+              <tr>
+                <th>Rank</th>
+                <th>Name</th>
+                <th>Best Points</th>
+                <th>Average Points</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="current-user">
+                <td>{userRank.rank}</td>
+                <td>{userRank.name}</td>
+                <td>{userRank.bestPoints.toFixed(3)}</td>
+                <td>{userRank.averagePoints.toFixed(3)}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      )}
     </div>
   );
 };
@@ -105,6 +150,11 @@ const ReactionGame = () => {
   const [results, setResults] = useState([]);
   const [countdown, setCountdown] = useState(null);
   const [greenClicked, setGreenClicked] = useState(false);
+  const [userRank, setUserRank] = useState(null);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
@@ -117,6 +167,13 @@ const ReactionGame = () => {
     startGame();
   };
 
+  const handlePlayGameClick = () => {
+    setPage("form");
+    setTimeout(() => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }, 100);
+  };
+
   const startGame = () => {
     setCircleColor("red");
     setCountdown(null);
@@ -124,7 +181,7 @@ const ReactionGame = () => {
     setTimeout(() => {
       setCircleColor("green");
       setStartTime(performance.now());
-    }, Math.random() * 2000 + 1000);
+    }, Math.random() * 5000 + 3000);
   };
 
   const handleCircleClick = () => {
@@ -143,7 +200,8 @@ const ReactionGame = () => {
 
   const saveGameData = useCallback(async () => {
     try {
-      await axios.post("http://localhost:5000/save", { ...formData, results, wrongClickCount });
+      const response = await axios.post("http://localhost:5000/save", { ...formData, results, wrongClickCount });
+      setUserRank(response.data.userRank);
     } catch (error) {
       console.error("Error saving data:", error);
     }
@@ -233,9 +291,11 @@ const ReactionGame = () => {
                   </li>
                 </ul>
               </div>
+              
             </div>
+            <button onClick={handlePlayGameClick} className="start-button">Play Game</button>
           </section>
-          <button onClick={() => setPage('form')} className="start-button">Play Game</button>
+         
         </div>
       )}
       {page === 'form' && (
@@ -251,14 +311,19 @@ const ReactionGame = () => {
       )}
       {page === "result" && (
         <div className="result-containerr">
-          <h2>Results</h2>
-          <ul>
-            {results.map((time, index) => (
-              <li key={index}>Attempt {index + 1}: {time} sec</li>
-            ))}
-          </ul>
-          <button onClick={handleTryAgain} className="try-again-buttonr">Try Again</button>
-          <button onClick={handleExit} className="exit-buttonr">Exit</button>
+          <div className="result-left">
+            <h2>Results</h2>
+            <ul>
+              {results.map((time, index) => (
+                <li key={index}>Attempt {index + 1}: {time} sec</li>
+              ))}
+            </ul>
+            <button onClick={handleTryAgain} className="try-again-buttonr">Try Again</button>
+            <button onClick={handleExit} className="exit-buttonr">Exit</button>
+          </div>
+          <div className="result-right">
+            <Leaderboard currentUser={formData} />
+          </div>
         </div>
       )}
     </div>

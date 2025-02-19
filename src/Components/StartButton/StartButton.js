@@ -6,8 +6,12 @@ const StartButton = () => {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate("/reactiongame"); // Navigate to the reaction game page
+    navigate("/reactiongame"); 
+    setTimeout(() => {
+      window.scrollTo(0, 0);
+    }, 100); // Small delay to ensure scroll happens after navigation
   };
+  
 
   return (
     <div className="start-button-container">

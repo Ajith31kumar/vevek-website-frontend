@@ -1,6 +1,7 @@
 /* Full Page Centering */
 .form-wrapperr {
   display: flex;
+  top: 10%;  
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -236,9 +237,8 @@ textarear:focus {
   color: #bbbbbb;
   max-width: 600px;
   margin: 10px auto 40px;
-  font-size: 1.1rem;
+ 
 }
-
 .steps {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -348,4 +348,96 @@ textarear:focus {
 
 .start-button:hover {
   background-color: #ff237a;
+}
+
+.leaderboard {
+  width: 100%;
+  text-align: center;
+  border: 1px solid #ddd;
+  background: white;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  margin-top: 40px;
+  color: black;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.leaderboard table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.leaderboard th, .leaderboard td {
+  padding: 10px;
+  border: 1px solid #ddd;
+  text-align: center;
+  color: black;
+}
+
+.leaderboard th {
+  background-color: white;
+  color: black;
+}
+
+.leaderboard tbody tr:nth-child(even) {
+  background-color: white;
+}
+
+.leaderboard tbody tr:hover {
+  background-color: white;
+}
+
+.result-containerr,
+
+.leaderboard-container {
+  background: white;
+  color: black;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  height: 400px;
+}
+
+.current-user {
+  font-weight: bold;
+}
+
+.current-user-section {
+  width: 40%;
+  padding: 10px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.current-user-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.current-user-table th, .current-user-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.result-containerr {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 90%;
+  max-width: 900px;
+  margin: auto;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  margin-bottom: 40px;
+}
+
+.result-left, .result-right {
+  width: 48%;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  height: 100%;
 }

@@ -8,11 +8,12 @@
 /* Separate Box around the Button */
 .start-button-box {
     background-color: #fff; /* White background for the box */
-    padding: 300px; /* Padding inside the box */
+    padding: 150px; /* Padding inside the box */
     border-radius: 20px; /* Rounded corners for the box */
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Shadow for depth */
     text-align: center; /* Center the button inside the box */
     width: fit-content; /* Box adjusts to button size */
+    margin-bottom: 30px;
 }
 
 /* Start Button Style */

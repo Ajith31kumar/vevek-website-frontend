@@ -1,6 +1,5 @@
-// App.js
 import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import "./App.css";
 import Navbar from "./Components/navbar/Navbar";
 import Footer from "./Components/Footer/Footer";
@@ -14,12 +13,13 @@ import Bonus from "./Components/Bonus/Bonus";
 import EliteAthlete from "./Components/EliteAthlete/EliteAthlete";
 import WebinarCountdown from "./Components/webinarcountdown/WebinarCountdown";
 import FaqSection from "./Components/Faqsection/FaqSection";
-import StartButton from "./Components/StartButton/StartButton"; // Import StartButton component
-import ReactionGame from "./Components/ReactionGame/ReactionGame"; // Import ReactionGame component
+import StartButton from "./Components/StartButton/StartButton";
+import ReactionGame from "./Components/ReactionGame/ReactionGame";
 
 const Home = () => (
   <div>
     <Webinar />
+    <StartButton />
     <HeroSection />
     <SolutionSection />
     <WebinarCountdown targetDate="February 9, 2025 19:00:00 GMT+5:30" />
@@ -27,25 +27,32 @@ const Home = () => (
     <CredentialsSection />
     <Athlete />
     <Bonus />
-    <StartButton />
     <EliteAthlete />
     <FaqSection />
-    {/* Add the Start Button */}
-   
   </div>
 );
 
 const App = () => {
+  const location = useLocation(); // Correctly placed inside a functional component
+
   return (
-    <Router>
+    <>
       <Navbar />
       <Routes>
-        <Route path="/" element={<Home />} /> {/* Home route */}
-        <Route path="/reactiongame" element={<ReactionGame />} /> {/* ReactionGame route */}
+        <Route path="/" element={<Home />} />
+        <Route path="/reactiongame" element={<ReactionGame />} />
       </Routes>
-      <Footer />
-    </Router>
+      {/* Show Footer only if the user is not on the ReactionGame page */}
+      {location.pathname !== "/reactiongame" && <Footer />}
+    </>
   );
 };
 
-export default App;
+// Wrap App with Router in main index.js
+const WrappedApp = () => (
+  <Router>
+    <App />
+  </Router>
+);
+
+export default WrappedApp;
