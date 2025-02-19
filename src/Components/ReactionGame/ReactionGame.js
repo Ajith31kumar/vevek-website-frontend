@@ -32,7 +32,7 @@ const Form = ({ setFormData, handleFormSubmit }) => {
           placeholder="Enter your Number"
           required
           className="inputr"
-          onChange={(e) => setFormData((prev) => ({ ...prev, phone: e.target.value }))} />
+          onChange={(e) => setFormData((prev) => ({ ...prev, number: e.target.value }))} />
         <input
           type="number"
           placeholder="Your Age"
@@ -200,7 +200,7 @@ const ReactionGame = () => {
 
   const saveGameData = useCallback(async () => {
     try {
-      const response = await axios.post("http://localhost:5000/save", { ...formData, results, wrongClickCount });
+      const response = await axios.post("http://localhost:5002/save", { ...formData, results, wrongClickCount });
       setUserRank(response.data.userRank);
     } catch (error) {
       console.error("Error saving data:", error);
