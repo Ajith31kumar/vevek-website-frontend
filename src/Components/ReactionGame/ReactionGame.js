@@ -49,73 +49,67 @@ const Leaderboard = ({ currentUser }) => {
   const [leaderboard, setLeaderboard] = useState([]);
   const [userRank, setUserRank] = useState(null);
 
-  // Fetch leaderboard data
   useEffect(() => {
     const fetchLeaderboard = async () => {
       try {
-        const response = await axios.get("http://localhost:5002/leaderboard");
-        const sortedLeaderboard = response.data.sort((a, b) => b.bestPoints - a.bestPoints);
-        setLeaderboard(sortedLeaderboard);
+        const response = await axios.get("http://localhost:5002/leaderboard", {
+          params: { email: currentUser?.email },
+        });
 
-        // Ensure email is defined before comparing
-        const rank = sortedLeaderboard.findIndex(player => 
-          player.email && currentUser?.email && 
-          player.email.trim().toLowerCase() === currentUser.email.trim().toLowerCase()
-        ) + 1;
+        console.log("API Response:", response.data);
 
-        if (rank > 0) {
-          setUserRank({ ...sortedLeaderboard[rank - 1], rank });
+        // Store leaderboard (always top 10)
+        if (Array.isArray(response.data.leaderboard)) {
+          setLeaderboard(response.data.leaderboard.slice(0, 10));
+        } else {
+          setLeaderboard([]);
         }
+
+        // Store current user rank (whether inside or outside top 10)
+        setUserRank(response.data.userRank || null);
       } catch (error) {
         console.error("Error fetching leaderboard:", error);
       }
     };
+
     fetchLeaderboard();
   }, [currentUser]);
 
   return (
-    <div className="leaderboard-container">
-      <div className="leaderboard">
-        <h2>Leaderboard</h2>
-        <table>
-          <thead>
-            <tr>
-              <th>Rank</th>
-              <th>Name</th>
-              <th>Best Points</th>
-              <th>Average Points</th>
-            </tr>
-          </thead>
-          <tbody>
-            {leaderboard.length > 0 ? (
-              leaderboard.map((player, index) => (
-                <tr 
-                  key={index} 
-                  className={player.email && currentUser?.email &&
-                             player.email.trim().toLowerCase() === currentUser.email.trim().toLowerCase() 
-                             ? "highlight" 
-                             : ""}
-                >
-                  <td>{index + 1}</td>
-                  <td>{player.name}</td>
-                  <td>{player.bestPoints.toFixed(3)}</td>
-                  <td>{player.averagePoints.toFixed(3)}</td>
-                </tr>
-              ))
-            ) : (
-              <tr>
-                <td colSpan="4">Loading...</td>
+    <div className="leaderboard-wrapper">
+      <h2>Leaderboard</h2>
+      <table className="scoreboard">
+        <thead>
+          <tr>
+            <th>Rank</th>
+            <th>Name</th>
+            <th>Best Points</th>
+            <th>Average Points</th>
+          </tr>
+        </thead>
+        <tbody>
+          {leaderboard.length > 0 ? (
+            leaderboard.map((player, index) => (
+              <tr key={index}>
+                <td>{player.rank}</td>
+                <td>{player.name}</td>
+                <td>{player.bestPoints.toFixed(3)}</td>
+                <td>{player.averagePoints.toFixed(3)}</td>
               </tr>
-            )}
-          </tbody>
-        </table>
-      </div>
+            ))
+          ) : (
+            <tr>
+              <td colSpan="4">No leaderboard data available.</td>
+            </tr>
+          )}
+        </tbody>
+      </table>
 
-      {/* Separate Section for Current User */}
+      {/* Always show "Your Rank" separately, even if inside top 10 */}
       {userRank && (
-        <div className="current-user-section">
+        <div className="active-user-section">
           <h3>Your Rank</h3>
-          <table className="current-user-table">
+          <table className="active-user-table">
             <thead>
               <tr>
                 <th>Rank</th>
@@ -125,7 +119,7 @@ const Leaderboard = ({ currentUser }) => {
               </tr>
             </thead>
             <tbody>
-              <tr className="current-user">
+              <tr className="active-user">
                 <td>{userRank.rank}</td>
                 <td>{userRank.name}</td>
                 <td>{userRank.bestPoints.toFixed(3)}</td>

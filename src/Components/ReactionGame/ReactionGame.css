@@ -1,5 +1,5 @@
  /* Full Page Centering */
-.form-wrapperr {
+ .form-wrapperr {
   display: flex;
   top: 10%;  
   flex-direction: column;
@@ -449,4 +449,145 @@ textarear:focus {
 
 .result-left h2{
   margin-bottom: 40px;
+}
+/* Leaderboard Styling */
+.leaderboard {
+  width: 100%;
+  text-align: center;
+  border: 1px solid #ddd;
+  background: white;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  margin-top: 40px;
+  color: black;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+/* Leaderboard Table */
+.leaderboard table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.leaderboard th, .leaderboard td {
+  padding: 10px;
+  border: 1px solid #ddd;
+  text-align: center;
+  color: black;
+}
+
+.leaderboard th {
+  background-color: white;
+  color: black;
+  font-weight: bold;
+}
+
+.leaderboard tbody tr:nth-child(even) {
+  background-color: white;
+}
+
+.leaderboard tbody tr:hover {
+  background-color: white;
+}
+
+/* Scrollable leaderboard if more than 10 users */
+.leaderboard tbody {
+  max-height: 300px;
+  overflow-y: auto;
+  display: block;
+}
+
+.leaderboard thead, .leaderboard tbody tr {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+
+/* Result Container */
+.result-containerr {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 90%;
+  max-width: 900px;
+  margin: auto;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  margin-bottom: 40px;
+}
+
+/* Left & Right Panels */
+.result-left, .result-right {
+  width: 48%;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  height: 100%;
+}
+
+.result-left h2 {
+  margin-bottom: 40px;
+}
+
+/* Current User Section */
+.current-user-section {
+  background-color: #f8f9fa;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  max-width: 400px;
+  width: 100%;
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 50px;
+  z-index: 1000;
+}
+
+/* Current User Table */
+.current-user-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.current-user-table th, .current-user-table td {
+  padding: 12px;
+  border: 1px solid #ddd;
+  text-align: center;
+}
+
+/* Highlight Current User */
+.current-user-table th {
+  background-color: #007bff;
+  color: white;
+  font-weight: bold;
+}
+
+/* Highlight Row for Current User */
+.current-user-table .current-user {
+  background-color: #ffeb3b; /* Yellow for better visibility */
+  font-weight: bold;
+}
+
+/* Highlight Cell Text */
+.current-user-table .current-user td {
+  color: #007bff;
+}
+
+/* Animation for Blinking Current User Row (Optional) */
+@keyframes blink {
+  0% { background-color: #ffeb3b; }
+  50% { background-color: #fff; }
+  100% { background-color: #ffeb3b; }
+}
+
+.current-user-highlight {
+  animation: blink 2s ease-in-out;
 }
