@@ -2,41 +2,170 @@
 .start-button-container {
     display: flex;
     justify-content: center;
-    margin-top: 50px; /* Space from other sections */
-}
-
-/* Separate Box around the Button */
-.start-button-box {
-    background-color: #fff; /* White background for the box */
-    padding: 150px; /* Padding inside the box */
-    border-radius: 20px; /* Rounded corners for the box */
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Shadow for depth */
-    text-align: center; /* Center the button inside the box */
-    width: fit-content; /* Box adjusts to button size */
+    align-items: center;
+    height: 500px; /* Full viewport height to center the button */
+    background: linear-gradient(135deg, #1a1a1a, #333); /* Dark gradient background */
+    overflow: hidden; /* Hide overflow for animations */
+    position: relative;
+  }
+  
+  /* Particle effects background */
+  .particles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, transparent 20%, #1a1a1a 20%, #1a1a1a 80%, transparent 80%, transparent),
+                radial-gradient(circle, transparent 20%, #1a1a1a 20%, #1a1a1a 80%, transparent 80%, transparent) 50px 50px;
+    background-size: 100px 100px;
+    animation: moveParticles 4s linear infinite;
+  }
+  
+  @keyframes moveParticles {
+    0% {
+      transform: translateY(0);
+    }
+    100% {
+      transform: translateY(-100px);
+    }
+  }
+  
+  /* Separate Box around the Button */
+  .start-button-box {
+    background-color: rgba(255, 255, 255, 0.1); /* Semi-transparent white background */
+    padding: 50px;
+    border-radius: 20px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5); /* Stronger shadow for depth */
+    text-align: center;
+    width: fit-content;
+    backdrop-filter: blur(10px); /* Blur effect for glassmorphism */
+    animation: float 3s ease-in-out infinite; /* Floating animation */
+    position: relative; /* Ensure the text is centered relative to this container */
+    
+  }
+  
+  /* Floating animation for the box */
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+  
+  /* Text above the button */
+  .start-button-text {
+    font-size: 48px; /* Larger font size */
+    color: #fff; /* White text */
+    margin-bottom: 20px;
+    
+    animation: fadeIn 1.5s ease-out; /* Fade-in animation */
+  }
+  .start-button-subtext {
+    font-size: 24px; /* Larger subtext */
+    color: #ccc; /* Light gray text */
     margin-bottom: 30px;
-}
-
-/* Start Button Style */
-.start-button {
-    background-color: #ff237a; /* Color of the button */
+    text-align: center; /* Center the subtext */
+    animation: fadeIn 2s ease-out; /* Delayed fade-in animation */
+  }
+  
+  /* Fade-in animation for text */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Start Button Style */
+  .start-button {
+    background: linear-gradient(135deg, #ff237a, #ff6b6b); /* Gradient button */
     color: white;
     font-size: 50px;
-    padding: 15px 30px;
-    border-radius: 50px; /* Rounded corners */
+    font-weight: bold;
+    padding: 20px 50px;
+    border-radius: 50px;
+    margin-left: 200px;
     border: none;
     cursor: pointer;
-    transition: background-color 0.3s, transform 0.3s;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow for depth */
-}
-
-/* Start Button Hover Effect */
-.start-button:hover {
-    background-color: #ff237a; /* Same color on hover */
-    transform: scale(1.1); /* Slight zoom-in effect */
-}
-
-/* Start Button Focus Effect */
-.start-button:focus {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px; /* Space between text and icon */
+    transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    animation: pulse 2s infinite; /* Pulse animation */
+    position: relative;
+    overflow: hidden;
+  }
+  
+  /* Button text and icon */
+  .button-text {
+    transition: transform 0.3s;
+  }
+  
+  .button-icon {
+    font-size: 40px; /* Larger icon */
+    transition: transform 0.3s;
+  }
+  
+  /* Start Button Hover Effect */
+  .start-button:hover {
+    background: linear-gradient(135deg, #e21b6b, #ff4d4d); /* Darker gradient on hover */
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+  }
+  
+  .start-button:hover .button-text {
+    transform: translateX(5px); /* Move text slightly to the right */
+  }
+  
+  .start-button:hover .button-icon {
+    transform: translateX(10px) rotate(15deg); /* Move and rotate the icon */
+  }
+  
+  /* Start Button Active (Click) Effect */
+  .start-button:active {
+    transform: scale(0.95);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Start Button Focus Effect */
+  .start-button:focus {
     outline: none;
-    box-shadow: 0 0 10px #ff237a; /* Focus glow effect */
-}
+    box-shadow: 0 0 15px #ff237a; /* Stronger glow effect */
+  }
+  
+  /* Pulse animation for the button */
+  @keyframes pulse {
+    0%, 100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.05);
+    }
+  }
+  
+  /* 3D Hover Effect */
+  .start-button::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300%;
+    height: 300%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.2), transparent 70%);
+    transform: translate(-50%, -50%) scale(0);
+    transition: transform 0.5s ease-out;
+    pointer-events: none;
+  }
+  
+  .start-button:hover::before {
+    transform: translate(-50%, -50%) scale(1);
+  }

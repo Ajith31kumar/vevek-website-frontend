@@ -76,7 +76,7 @@ const Leaderboard = ({ currentUser }) => {
   }, [currentUser]);
 
   return (
-    <div className="leaderboard-wrapper">
+    <div className="leaderboard">
       <h2>Leaderboard</h2>
       <table className="scoreboard">
         <thead>
@@ -91,7 +91,7 @@ const Leaderboard = ({ currentUser }) => {
           {leaderboard.length > 0 ? (
             leaderboard.map((player, index) => (
               <tr key={index}>
-                <td>{player.rank}</td>
+                <td>{player.rank || index + 1}</td>
                 <td>{player.name}</td>
                 <td>{player.bestPoints.toFixed(3)}</td>
                 <td>{player.averagePoints.toFixed(3)}</td>
@@ -107,9 +107,9 @@ const Leaderboard = ({ currentUser }) => {
 
       {/* Always show "Your Rank" separately, even if inside top 10 */}
       {userRank && (
-        <div className="active-user-section">
+        <div className="current-user-section">
           <h3>Your Rank</h3>
-          <table className="active-user-table">
+          <table className="current-user-table">
             <thead>
               <tr>
                 <th>Rank</th>
@@ -119,7 +119,7 @@ const Leaderboard = ({ currentUser }) => {
               </tr>
             </thead>
             <tbody>
-              <tr className="active-user">
+              <tr className="current-user">
                 <td>{userRank.rank}</td>
                 <td>{userRank.name}</td>
                 <td>{userRank.bestPoints.toFixed(3)}</td>
@@ -304,21 +304,21 @@ const ReactionGame = () => {
         </div>
       )}
       {page === "result" && (
-        <div className="result-containerr">
-          <div className="result-left">
-            <h2>Results</h2>
-            <ul>
-              {results.map((time, index) => (
-                <li key={index}>Attempt {index + 1}: {time} sec</li>
-              ))}
-            </ul>
-            <button onClick={handleTryAgain} className="try-again-buttonr">Try Again</button>
-            <button onClick={handleExit} className="exit-buttonr">Exit</button>
-          </div>
-          <div className="result-right">
-            <Leaderboard currentUser={formData} />
-          </div>
-        </div>
+      <div className="result-containerr">
+      <div className="result-left">
+        <h2>Results</h2>
+        <ul>
+          {results.map((time, index) => (
+            <li key={index}>Attempt {index + 1}: {time} sec</li>
+          ))}
+        </ul>
+        <button onClick={handleTryAgain} className="try-again-buttonr">Try Again</button>
+        <button onClick={handleExit} className="exit-buttonr">Exit</button>
+      </div>
+      <div className="result-right">
+        <Leaderboard currentUser={formData} />
+      </div>
+    </div>
       )}
     </div>
   );
