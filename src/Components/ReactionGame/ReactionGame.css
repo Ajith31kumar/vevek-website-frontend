@@ -128,9 +128,14 @@ textarear:focus {
 /* Game Area */
 .game-containerr {
   margin-top: 20px;
+  display: flex;
+  flex-direction: column; /* Items stacked vertically */
+  align-items: center;
+  justify-content: center;
+  height: 100vh; /* Full screen height */
 }
 
-
+/* Default Circle Styles */
 .circler {
   width: 200px;
   height: 200px;
@@ -141,8 +146,10 @@ textarear:focus {
   justify-content: center;
   font-size: 24px;
   color: white;
+  transition: all 0.3s ease-in-out;
 }
 
+/* Red and Green Circles */
 .circler.red {
   background-color: red;
 }
@@ -151,10 +158,50 @@ textarear:focus {
   background-color: green;
 }
 
+/* Reaction Timer, Countdown, and Wrong Click Styles */
 .reaction-timer, .countdown, .wrong-click {
-  margin-top: 20px;
+  margin-top: 20px; /* Space below the circle */
   font-size: 30px;
   color: #1e1e1e;
+  text-align: center;
+}
+
+/* Responsive Circle Sizing */
+@media (max-width: 1024px) {
+  .circler {
+    width: 100px;
+    height: 100px;
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .circler {
+    width: 80px;
+    height: 80px;
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .circler {
+    width: 70px;
+    height: 70px;
+    font-size: 16px;
+  }
+}
+
+/* Responsive Text Size */
+@media (max-width: 768px) {
+  .reaction-timer, .countdown, .wrong-click {
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .reaction-timer, .countdown, .wrong-click {
+    font-size: 20px;
+  }
 }
 
 /* Enlarged Result Box */
@@ -202,6 +249,7 @@ textarear:focus {
   position: relative;
   overflow: hidden;
   perspective: 1000px;
+  text-align: center;
 }
 
 /* Neon Glow Effect */
@@ -345,19 +393,20 @@ textarear:focus {
   }
 }
 
-.start-button {
-  margin-top: 30px;
-  padding: 10px 20px;
+.start-buttonrr {
+  margin-top: 20px; 
+  padding: 12px 24px;
+  font-size: 18px;
   background-color: #ff4081;
   color: white;
   border: none;
-  border-radius: 5px;
-  font-size: 1.2rem;
+  border-radius: 8px;
   cursor: pointer;
+  transition: 0.3s ease;
 }
 
-.start-button:hover {
-  background-color: #ff237a;
+.start-buttonrr:hover {
+  background-color: #ff4081;
 }
 /* General Styles */
 body {
@@ -454,6 +503,94 @@ body {
   text-align: center;
 }
 
+
+/* Responsive Design */
+
+/* For tablets and smaller laptops */
+@media (max-width: 1024px) {
+  .form-containerr, .result-containerr {
+    width: 90%;
+    height: auto;
+    padding: 30px;
+  }
+
+  .stopwatch-display {
+    font-size: 24px;
+  }
+
+  .circler {
+    width: 150px;
+    height: 150px;
+    font-size: 20px;
+  }
+}
+
+/* For mobile devices */
+@media (max-width: 768px) {
+  .form-containerr, .result-containerr {
+    width: 95%;
+    padding: 20px;
+  }
+
+  .form-titler {
+    font-size: 24px;
+  }
+
+  .inputr, selectr, textarear {
+    font-size: 16px;
+    padding: 12px;
+  }
+
+  .submit-buttonr, .try-again-buttonr, .exit-buttonr {
+    font-size: 18px;
+    padding: 12px;
+  }
+
+  .stopwatch-display {
+    font-size: 20px;
+  }
+
+  .steps {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .circler {
+    width: 120px;
+    height: 120px;
+    font-size: 18px;
+  }
+}
+
+/* For very small mobile screens */
+@media (max-width: 480px) {
+  .form-titler {
+    font-size: 20px;
+  }
+
+  .inputr, selectr, textarear {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  .submit-buttonr, .try-again-buttonr, .exit-buttonr {
+    font-size: 16px;
+    padding: 10px;
+  }
+
+  .stopwatch-display {
+    font-size: 18px;
+  }
+
+  .circler {
+    width: 100px;
+    height: 100px;
+    font-size: 16px;
+  }
+
+  .leaderboard {
+    max-height: 300px;
+  }
+}
 
 
 

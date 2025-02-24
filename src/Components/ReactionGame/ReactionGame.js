@@ -287,7 +287,7 @@ const ReactionGame = () => {
               </div>
               
             </div>
-            <button onClick={handlePlayGameClick} className="start-button">Play Game</button>
+            <button onClick={handlePlayGameClick} className="start-buttonrr">Play Game</button>
           </section>
          
         </div>
