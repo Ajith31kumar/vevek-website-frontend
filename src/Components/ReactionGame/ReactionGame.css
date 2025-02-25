@@ -146,7 +146,7 @@ textarear:focus {
   justify-content: center;
   font-size: 24px;
   color: white;
-  transition: all 0.3s ease-in-out;
+ 
 }
 
 /* Red and Green Circles */
@@ -501,8 +501,62 @@ body {
   width: 80%;
   max-width: 600px;
   text-align: center;
+  z-index: 1000; 
+}
+/* Current User Section */
+.current-user-section {
+  background-color: #f8f9fa;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  max-width: 400px;
+  width: 100%;
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 50px;
+  z-index: 1000;
 }
 
+/* Current User Table */
+.current-user-table{
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.current-user-table th, .current-user-table td {
+  padding: 12px;
+  border: 1px solid #ddd;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 80%;
+  max-width: 600px;
+  text-align: center;
+}
+
+/* Highlight Current User */
+.current-user-table th {
+  background-color: #007bff;
+  color: white;
+  font-weight: bold;
+}
+
+/* Highlight Row for Current User */
+.current-user-table .current-user {
+  background-color: #ffeb3b; /* Yellow for better visibility */
+  font-weight: bold;
+}
+
+/* Highlight Cell Text */
+.current-user-table .current-user td {
+  color: #007bff;
+}
 
 /* Responsive Design */
 
@@ -590,6 +644,23 @@ body {
   .leaderboard {
     max-height: 300px;
   }
+}
+
+.circle {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.red {
+  background-color: red;
+}
+
+.green {
+  background-color: green;
 }
 
 

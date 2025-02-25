@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 import axios from "axios";
-import "./ReactionGame.css"; // Updated CSS file with new class names
+import "./ReactionGame.css"; // Ensure this CSS file is correctly linked
 
 const Form = ({ setFormData, handleFormSubmit }) => {
   return (
@@ -12,17 +12,20 @@ const Form = ({ setFormData, handleFormSubmit }) => {
           placeholder="Your Name"
           required
           className="inputr"
-          onChange={(e) => setFormData((prev) => ({ ...prev, name: e.target.value }))} />
+          onChange={(e) => setFormData((prev) => ({ ...prev, name: e.target.value }))}
+        />
         <input
           type="email"
           placeholder="Your Email"
           required
           className="inputr"
-          onChange={(e) => setFormData((prev) => ({ ...prev, email: e.target.value }))} />
+          onChange={(e) => setFormData((prev) => ({ ...prev, email: e.target.value }))}
+        />
         <select
           required
           className="inputr"
-          onChange={(e) => setFormData((prev) => ({ ...prev, sex: e.target.value }))}>
+          onChange={(e) => setFormData((prev) => ({ ...prev, sex: e.target.value }))}
+        >
           <option value="">Select Gender</option>
           <option value="Male">Male</option>
           <option value="Female">Female</option>
@@ -32,14 +35,18 @@ const Form = ({ setFormData, handleFormSubmit }) => {
           placeholder="Enter your Number"
           required
           className="inputr"
-          onChange={(e) => setFormData((prev) => ({ ...prev, number: e.target.value }))} />
+          onChange={(e) => setFormData((prev) => ({ ...prev, number: e.target.value }))}
+        />
         <input
           type="number"
           placeholder="Your Age"
           required
           className="inputr"
-          onChange={(e) => setFormData((prev) => ({ ...prev, age: e.target.value }))} />
-        <button type="submit" className="submit-buttonr">Start Playing</button>
+          onChange={(e) => setFormData((prev) => ({ ...prev, age: e.target.value }))}
+        />
+        <button type="submit" className="submit-buttonr">
+          Start Playing
+        </button>
       </form>
     </div>
   );
@@ -56,16 +63,12 @@ const Leaderboard = ({ currentUser }) => {
           params: { email: currentUser?.email },
         });
 
-        console.log("API Response:", response.data);
-
-        // Store leaderboard (always top 10)
         if (Array.isArray(response.data.leaderboard)) {
           setLeaderboard(response.data.leaderboard.slice(0, 10));
         } else {
           setLeaderboard([]);
         }
 
-        // Store current user rank (whether inside or outside top 10)
         setUserRank(response.data.userRank || null);
       } catch (error) {
         console.error("Error fetching leaderboard:", error);
@@ -105,7 +108,6 @@ const Leaderboard = ({ currentUser }) => {
         </tbody>
       </table>
 
-      {/* Always show "Your Rank" separately, even if inside top 10 */}
       {userRank && (
         <div className="current-user-section">
           <h3>Your Rank</h3>
@@ -139,12 +141,12 @@ const ReactionGame = () => {
   const [circleColor, setCircleColor] = useState("red");
   const [reactionTime, setReactionTime] = useState(0);
   const [startTime, setStartTime] = useState(null);
-  const [clickCount, setClickCount] = useState(0);
-  const [wrongClickCount, setWrongClickCount] = useState(0);
   const [results, setResults] = useState([]);
   const [countdown, setCountdown] = useState(null);
   const [greenClicked, setGreenClicked] = useState(false);
   const [userRank, setUserRank] = useState(null);
+  const [feedback, setFeedback] = useState(null);
+  const maxAttempts = 5;
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -153,25 +155,19 @@ const ReactionGame = () => {
   const handleFormSubmit = (e) => {
     e.preventDefault();
     setPage("game");
-    setClickCount(0);
-    setWrongClickCount(0);
-    setReactionTime(0);
     setResults([]);
-    setGreenClicked(false);
+    setFeedback(null);
     startGame();
   };
 
-  const handlePlayGameClick = () => {
-    setPage("form");
-    setTimeout(() => {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }, 100);
-  };
-
   const startGame = () => {
+    if (results.length >= maxAttempts) {
+      setPage("result");
+      saveGameData();
+      return;
+    }
     setCircleColor("red");
-    setCountdown(null);
-    setGreenClicked(false);
+    setFeedback(null);
     setTimeout(() => {
       setCircleColor("green");
       setStartTime(performance.now());
@@ -179,27 +175,19 @@ const ReactionGame = () => {
   };
 
   const handleCircleClick = () => {
+    const attemptNumber = results.length + 1;
+    
     if (circleColor === "green" && startTime && !greenClicked) {
       setGreenClicked(true);
       const endTime = performance.now();
       const timeTaken = ((endTime - startTime) / 1000).toFixed(3);
       setReactionTime(timeTaken);
-      setClickCount((prev) => prev + 1);
-      setResults([...results, timeTaken]);
+      setResults([...results, { attempt: attemptNumber, result: `✅ ${timeTaken} sec` }]);
       setCountdown(5);
     } else {
-      setWrongClickCount((prev) => prev + 1);
+      setResults([...results, { attempt: attemptNumber, result: "❌ Invalid Result" }]);
     }
   };
-
-  const saveGameData = useCallback(async () => {
-    try {
-      const response = await axios.post("http://localhost:5002/save", { ...formData, results, wrongClickCount });
-      setUserRank(response.data.userRank);
-    } catch (error) {
-      console.error("Error saving data:", error);
-    }
-  }, [formData, results, wrongClickCount]);
 
   useEffect(() => {
     if (countdown !== null && countdown > 0) {
@@ -207,14 +195,37 @@ const ReactionGame = () => {
       return () => clearTimeout(timer);
     } else if (countdown === 0) {
       setCircleColor("red");
-      if (clickCount < 5) {
+      if (results.length < 5) {
+        startGame();
+      } else {
+        setPage("result");
+      }
+    }
+  }, [countdown, results]);
+
+  const saveGameData = useCallback(async () => {
+    try {
+      const response = await axios.post("http://localhost:5002/save", { ...formData, results });
+      setUserRank(response.data.userRank);
+    } catch (error) {
+      console.error("Error saving data:", error);
+    }
+  }, [formData, results]);
+
+  useEffect(() => {
+    if (countdown !== null && countdown > 0) {
+      const timer = setTimeout(() => setCountdown(countdown - 1), 1000);
+      return () => clearTimeout(timer);
+    } else if (countdown === 0) {
+      setCircleColor("red");
+      if (results.length < 5) {
         startGame();
       } else {
         setPage("result");
         saveGameData();
       }
     }
-  }, [countdown, clickCount, saveGameData]);
+  }, [countdown, results, saveGameData]);
 
   const handleExit = async () => {
     await saveGameData();
@@ -223,9 +234,6 @@ const ReactionGame = () => {
 
   const handleTryAgain = () => {
     setPage("game");
-    setClickCount(0);
-    setWrongClickCount(0);
-    setReactionTime(0);
     setResults([]);
     setGreenClicked(false);
     startGame();
@@ -233,15 +241,14 @@ const ReactionGame = () => {
 
   return (
     <div>
-      {page === 'start' && (
+      {page === "start" && (
         <div className="start-section">
           <section id="howToPlay">
             <div className="container">
               <div className="title">
                 <h2>How To Play</h2>
                 <p>
-                  Master your reflexes with our simple yet challenging reaction game.
-                  Follow these steps to test your speed!
+                  Master your reflexes with our simple yet challenging reaction game. Follow these steps to test your speed!
                 </p>
               </div>
 
@@ -267,7 +274,7 @@ const ReactionGame = () => {
                 <div className="step">
                   <div className="step-number pink">4</div>
                   <h3>View Results</h3>
-                  <p>After 5 attempts, see your average reaction time </p>
+                  <p>After 5 attempts, see your average reaction time</p>
                 </div>
               </div>
 
@@ -285,40 +292,42 @@ const ReactionGame = () => {
                   </li>
                 </ul>
               </div>
-              
             </div>
-            <button onClick={handlePlayGameClick} className="start-buttonrr">Play Game</button>
+            <button onClick={() => setPage("form")} className="start-buttonr">Play Game</button>
           </section>
-         
         </div>
       )}
-      {page === 'form' && (
-        <Form setFormData={setFormData} handleFormSubmit={handleFormSubmit} />
-      )}
+      {page === "form" && <Form setFormData={setFormData} handleFormSubmit={handleFormSubmit} />}
       {page === "game" && (
-        <div className="game-containerr">
-          <div className={`circler ${circleColor}`} onClick={handleCircleClick}></div>
+        <div className="game-container">
+          <div className={`circle ${circleColor}`} onClick={handleCircleClick}>
+            {feedback && <span className="feedback">{feedback}</span>}
+          </div>
           <p className="reaction-timer">Reaction Time: {reactionTime} ms</p>
-          {countdown !== null && <p className="countdown">Countdown: {countdown}</p>}
-          <p className="wrong-click">Wrong Clicks: {wrongClickCount}</p>
         </div>
       )}
       {page === "result" && (
-      <div className="result-containerr">
-      <div className="result-left">
-        <h2>Results</h2>
-        <ul>
-          {results.map((time, index) => (
-            <li key={index}>Attempt {index + 1}: {time} sec</li>
-          ))}
-        </ul>
-        <button onClick={handleTryAgain} className="try-again-buttonr">Try Again</button>
-        <button onClick={handleExit} className="exit-buttonr">Exit</button>
-      </div>
-      <div className="result-right">
-        <Leaderboard currentUser={formData} />
-      </div>
-    </div>
+        <div className="result-containerr">
+          <div className="result-left">
+            <h2>Results</h2>
+            <ul>
+              {results.map((item, index) => (
+                <li key={index}>
+                  Attempt {item.attempt}: {item.result}
+                </li>
+              ))}
+            </ul>
+            <button onClick={handleTryAgain} className="try-again-buttonr">
+              Try Again
+            </button>
+            <button onClick={handleExit} className="exit-buttonr">
+              Exit
+            </button>
+          </div>
+          <div className="result-right">
+            <Leaderboard currentUser={formData} />
+          </div>
+        </div>
       )}
     </div>
   );
