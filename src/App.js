@@ -49,6 +49,8 @@ const App = () => {
 };
 
 // Wrap App with Router in main index.js
+//http://localhost:5002
+//https://vevek-website-backend-main.onrender.com iX6dwVyeuroNNfxZ
 const WrappedApp = () => (
   <Router>
     <App />
