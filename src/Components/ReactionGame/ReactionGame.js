@@ -59,7 +59,7 @@ const Leaderboard = ({ currentUser }) => {
   useEffect(() => {
     const fetchLeaderboard = async () => {
       try {
-        const response = await axios.get("http://localhost:5002/leaderboard", {
+        const response = await axios.get("https://vevek-website-backend-main.onrender.com/leaderboard", {
           params: { email: currentUser?.email },
         });
 
@@ -230,7 +230,7 @@ const ReactionGame = () => {
 
   const saveGameData = useCallback(async () => {
     try {
-      const response = await axios.post("http://localhost:5002/save", { ...formData, results });
+      const response = await axios.post("https://vevek-website-backend-main.onrender.com/save", { ...formData, results });
       setUserRank(response.data.userRank);
     } catch (error) {
       console.error("Error saving data:", error);
