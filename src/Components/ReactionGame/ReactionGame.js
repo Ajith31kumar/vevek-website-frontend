@@ -181,30 +181,29 @@ const ReactionGame = () => {
     const attemptNumber = results.length + 1;
   
     if (circleColor === "red") {
-      // Clicking red is an incorrect click, hide it and reduce attempts
+      // Red circle disappears only if user clicks it (wrong click)
       setCircleColor(null);
       setResults([...results, { attempt: attemptNumber, result: "❌ Wrong Click (Red)" }]);
       setRemainingAttempts(maxAttempts - results.length - 1);
-      
+  
+      // Red circle reappears after 5 seconds
       setTimeout(() => {
-        setCircleColor("red"); // Restore red circle after 5 seconds
+        setCircleColor("red");
       }, 5000);
     } 
     else if (circleColor === "green" && startTime) {
       if (!greenClicked) {
-        // First green click is valid
+        // First green click: valid reaction, reduce attempts
         setGreenClicked(true);
         const endTime = performance.now();
         const timeTaken = ((endTime - startTime) / 1000).toFixed(3);
         setReactionTime(timeTaken);
         setResults([...results, { attempt: attemptNumber, result: `✅ ${timeTaken} sec` }]);
         
-        setRemainingAttempts(maxAttempts - results.length - 1); // Reduce attempts for first green click
+        setRemainingAttempts(maxAttempts - results.length - 1); // Reduce attempts only on first green click
         setCountdown(5);
-      } else {
-        // Second green click does not reduce attempts
-        setResults([...results, { attempt: attemptNumber, result: "🟢 Already Clicked (No Penalty)" }]);
-      }
+      } 
+      // Ignore second green clicks (don't add any entry)
     } else {
       // Clicking at the wrong time (before green appears)
       setResults([...results, { attempt: attemptNumber, result: "❌ Invalid Click" }]);
@@ -315,7 +314,7 @@ const ReactionGame = () => {
           <div className={`circle ${circleColor}`} onClick={handleCircleClick}>
             {feedback && <span className="feedback">{feedback}</span>}
           </div>
-          <p className="reaction-timer">Reaction Time: {reactionTime} ms</p>
+          <p className="reaction-timer">Reaction Time: {reactionTime} sec</p>
           <p className="remaining-attempts">Remaining Attempts: {remainingAttempts}</p>
         </div>
       )}

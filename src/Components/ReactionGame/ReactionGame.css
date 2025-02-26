@@ -646,6 +646,13 @@ body {
   }
 }
 
+.remaining-attempts {
+  font-size: 24px;  /* Increase font size */
+  font-weight: bold; /* Make it bold */
+  color: red;  /* Highlight in red */
+  text-align: center; /* Center align */
+  margin-top: 10px; /* Space from other elements */
+}
 
 
 
