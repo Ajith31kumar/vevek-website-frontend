@@ -96,8 +96,8 @@ const Leaderboard = ({ currentUser }) => {
               <tr key={index}>
                 <td>{player.rank || index + 1}</td>
                 <td>{player.name}</td>
-                <td>{player.bestPoints.toFixed(3)}</td>
-                <td>{player.averagePoints.toFixed(3)}</td>
+                <td>{player.bestPoints?.toFixed(3) ?? "N/A"}</td>
+                <td>{player.averagePoints?.toFixed(3) ?? "N/A"}</td>
               </tr>
             ))
           ) : (
@@ -124,8 +124,8 @@ const Leaderboard = ({ currentUser }) => {
               <tr className="current-user">
                 <td>{userRank.rank}</td>
                 <td>{userRank.name}</td>
-                <td>{userRank.bestPoints.toFixed(3)}</td>
-                <td>{userRank.averagePoints.toFixed(3)}</td>
+                <td>{userRank.bestPoints?.toFixed(3) ?? "N/A"}</td>
+                <td>{userRank.averagePoints?.toFixed(3) ?? "N/A"}</td>
               </tr>
             </tbody>
           </table>
@@ -146,7 +146,8 @@ const ReactionGame = () => {
   const [greenClicked, setGreenClicked] = useState(false);
   const [userRank, setUserRank] = useState(null);
   const [feedback, setFeedback] = useState(null);
-  const maxAttempts = 5;
+  const [maxAttempts] = useState(5);
+  const [remainingAttempts, setRemainingAttempts] = useState(5);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -157,6 +158,7 @@ const ReactionGame = () => {
     setPage("game");
     setResults([]);
     setFeedback(null);
+    setRemainingAttempts(5);
     startGame();
   };
 
@@ -168,6 +170,7 @@ const ReactionGame = () => {
     }
     setCircleColor("red");
     setFeedback(null);
+    setGreenClicked(false); // Reset greenClicked for the new round
     setTimeout(() => {
       setCircleColor("green");
       setStartTime(performance.now());
@@ -176,18 +179,40 @@ const ReactionGame = () => {
 
   const handleCircleClick = () => {
     const attemptNumber = results.length + 1;
-    
-    if (circleColor === "green" && startTime && !greenClicked) {
-      setGreenClicked(true);
-      const endTime = performance.now();
-      const timeTaken = ((endTime - startTime) / 1000).toFixed(3);
-      setReactionTime(timeTaken);
-      setResults([...results, { attempt: attemptNumber, result: `✅ ${timeTaken} sec` }]);
-      setCountdown(5);
+  
+    if (circleColor === "red") {
+      // Clicking red is an incorrect click, hide it and reduce attempts
+      setCircleColor(null);
+      setResults([...results, { attempt: attemptNumber, result: "❌ Wrong Click (Red)" }]);
+      setRemainingAttempts(maxAttempts - results.length - 1);
+      
+      setTimeout(() => {
+        setCircleColor("red"); // Restore red circle after 5 seconds
+      }, 5000);
+    } 
+    else if (circleColor === "green" && startTime) {
+      if (!greenClicked) {
+        // First green click is valid
+        setGreenClicked(true);
+        const endTime = performance.now();
+        const timeTaken = ((endTime - startTime) / 1000).toFixed(3);
+        setReactionTime(timeTaken);
+        setResults([...results, { attempt: attemptNumber, result: `✅ ${timeTaken} sec` }]);
+        
+        setRemainingAttempts(maxAttempts - results.length - 1); // Reduce attempts for first green click
+        setCountdown(5);
+      } else {
+        // Second green click does not reduce attempts
+        setResults([...results, { attempt: attemptNumber, result: "🟢 Already Clicked (No Penalty)" }]);
+      }
     } else {
-      setResults([...results, { attempt: attemptNumber, result: "❌ Invalid Result" }]);
+      // Clicking at the wrong time (before green appears)
+      setResults([...results, { attempt: attemptNumber, result: "❌ Invalid Click" }]);
+      setFeedback("Incorrect Click! Wait for green.");
+      setRemainingAttempts(maxAttempts - results.length - 1);
     }
   };
+  
 
   useEffect(() => {
     if (countdown !== null && countdown > 0) {
@@ -195,10 +220,11 @@ const ReactionGame = () => {
       return () => clearTimeout(timer);
     } else if (countdown === 0) {
       setCircleColor("red");
-      if (results.length < 5) {
+      if (results.length < maxAttempts) {
         startGame();
       } else {
         setPage("result");
+        saveGameData();
       }
     }
   }, [countdown, results]);
@@ -212,21 +238,6 @@ const ReactionGame = () => {
     }
   }, [formData, results]);
 
-  useEffect(() => {
-    if (countdown !== null && countdown > 0) {
-      const timer = setTimeout(() => setCountdown(countdown - 1), 1000);
-      return () => clearTimeout(timer);
-    } else if (countdown === 0) {
-      setCircleColor("red");
-      if (results.length < 5) {
-        startGame();
-      } else {
-        setPage("result");
-        saveGameData();
-      }
-    }
-  }, [countdown, results, saveGameData]);
-
   const handleExit = async () => {
     await saveGameData();
     setPage("start");
@@ -236,6 +247,7 @@ const ReactionGame = () => {
     setPage("game");
     setResults([]);
     setGreenClicked(false);
+    setRemainingAttempts(5);
     startGame();
   };
 
@@ -304,6 +316,7 @@ const ReactionGame = () => {
             {feedback && <span className="feedback">{feedback}</span>}
           </div>
           <p className="reaction-timer">Reaction Time: {reactionTime} ms</p>
+          <p className="remaining-attempts">Remaining Attempts: {remainingAttempts}</p>
         </div>
       )}
       {page === "result" && (
