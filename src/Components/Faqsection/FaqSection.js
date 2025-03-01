@@ -17,7 +17,7 @@ const FaqSection = () => {
   };
 
   return (
-    <div className="faq-background">
+    <div id="faq" className="faq-background">
       <div className="faq-container">
         <h2 className="faq-heading">Frequently Asked Questions</h2>
         {faqs.map((faq, index) => (

@@ -26,7 +26,7 @@ const WebinarCountdown = () => {
   }, [targetDate]);
 
   return (
-    <div className="container1">
+    <div  id="webinarDetails" className="container1">
       <div className="card">
         <div className="details-grid">
           <div className="detail-box">

@@ -6,7 +6,7 @@ const CredentialsSection = () => {
     <section id="credentials">
    
 
-      <div className="container1">
+      <div className="container9">
         <div className="text-center">
           <h2 className="title">Why Trust Me?</h2>
         </div>

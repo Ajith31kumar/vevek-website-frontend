@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom"; // Import Link for internal navigation
 import "./footer.css"; // Import the CSS file
+import { Link as ScrollLink } from "react-scroll";
+
 
 const Footer = () => {
   return (
@@ -16,12 +18,14 @@ const Footer = () => {
         {/* Quick Links */}
         <div className="footer-links">
           <h4>Quick Links</h4>
+          
           <ul>
-            <li><Link to="#webinarDetails">Webinar Details</Link></li>
-            <li><Link to="#benefits">Benefits</Link></li>
-            <li><Link to="#bonuses">Bonuses</Link></li>
-            <li><Link to="#faq">FAQs</Link></li>
-          </ul>
+          <li><ScrollLink to="webinarDetails" smooth={true} duration={500}>Webinar Details</ScrollLink></li>
+          <li><ScrollLink to="benefits" smooth={true} duration={500}>Benefits</ScrollLink></li>
+          <li><ScrollLink to="bonuses" smooth={true} duration={500}>Bonuses</ScrollLink></li>
+          <li><ScrollLink to="faq" smooth={true} duration={500}>FAQs</ScrollLink></li>
+        </ul>
+
         </div>
 
         {/* Register CTA */}

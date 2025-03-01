@@ -1,19 +1,30 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "./Navbar.css";
+import { Link as ScrollLink } from "react-scroll"; // Import react-scroll
+import "./Navbar.css"; 
 
 const Navbar = () => {
   return (
     <nav className="navbar">
       <div className="navbar-brand">Forge Your Peak</div>
       <div className="navbar-links">
-        <Link to="#problem" className="navbar-link">Why Us</Link>
-        <Link to="#solution" className="navbar-link">Benefits</Link>
+        <ScrollLink to="problem" smooth={true} duration={500} className="navbar-link">
+          Why Us
+        </ScrollLink>
+        <ScrollLink to="solution" smooth={true} duration={500} className="navbar-link">
+          Benefits
+        </ScrollLink>
         <Link to="/reactiongame" className="navbar-link">ReactionGame</Link>
-        <Link to="#webinarDetails" className="navbar-link">Schedule</Link>
-        <Link to="#credentials" className="navbar-link">About</Link>
+        <ScrollLink to="webinarDetails" smooth={true} duration={500} className="navbar-link">
+          Schedule
+        </ScrollLink>
+        <ScrollLink to="credentials" smooth={true} duration={500} className="navbar-link">
+          About
+        </ScrollLink>
       </div>
-      <a href="https://tagmango.app/36e3433a84" className="navbar-register" target="_blank" rel="noopener noreferrer">Register Now</a>
+      <a href="https://tagmango.app/36e3433a84" className="navbar-register" target="_blank" rel="noopener noreferrer">
+        Register Now
+      </a>
     </nav>
   );
 };

@@ -10,13 +10,14 @@
 .card {
   background: #1f2937;
   border-radius: 20px;
-  padding: 30px;
+  padding: 40px;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
   text-align: center;
-  max-width: 90%; /* Adjusted for better responsiveness */
-  min-height: 350px;
-  margin: auto; /* Center align */
+  max-width: 90%;
+  min-height: 400px;
+  margin: 100px auto; /* 👈 Increased margin-top to move it down */
 }
+
 
 /* Details Grid */
 .details-grid {
