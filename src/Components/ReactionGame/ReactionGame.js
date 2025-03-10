@@ -1,143 +1,15 @@
 import React, { useState, useEffect, useCallback } from "react";
 import axios from "axios";
 import "./ReactionGame.css"; // Ensure this CSS file is correctly linked
+// import Form from "./Form";
+import Leaderboard from "./Leaderboard";
+import Login from "./Login";
 
-const Form = ({ setFormData, handleFormSubmit }) => {
-  return (
-    <div className="form-wrapperr">
-      <h2 className="form-titler">Player Details</h2>
-      <form onSubmit={handleFormSubmit} className="form-containerr">
-        <input
-          type="text"
-          placeholder="Your Name"
-          required
-          className="inputr"
-          onChange={(e) => setFormData((prev) => ({ ...prev, name: e.target.value }))}
-        />
-        <input
-          type="email"
-          placeholder="Your Email"
-          required
-          className="inputr"
-          onChange={(e) => setFormData((prev) => ({ ...prev, email: e.target.value }))}
-        />
-        <select
-          required
-          className="inputr"
-          onChange={(e) => setFormData((prev) => ({ ...prev, sex: e.target.value }))}
-        >
-          <option value="">Select Gender</option>
-          <option value="Male">Male</option>
-          <option value="Female">Female</option>
-        </select>
-        <input
-          type="number"
-          placeholder="Enter your Number"
-          required
-          className="inputr"
-          onChange={(e) => setFormData((prev) => ({ ...prev, number: e.target.value }))}
-        />
-        <input
-          type="number"
-          placeholder="Your Age"
-          required
-          className="inputr"
-          onChange={(e) => setFormData((prev) => ({ ...prev, age: e.target.value }))}
-        />
-        <button type="submit" className="submit-buttonr">
-          Start Playing
-        </button>
-      </form>
-    </div>
-  );
-};
 
-const Leaderboard = ({ currentUser }) => {
-  const [leaderboard, setLeaderboard] = useState([]);
-  const [userRank, setUserRank] = useState(null);
 
-  useEffect(() => {
-    const fetchLeaderboard = async () => {
-      try {
-        const response = await axios.get("https://vevek-website-backend-1.onrender.com/leaderboard", {
-          params: { email: currentUser?.email },
-        });
-
-        if (Array.isArray(response.data.leaderboard)) {
-          setLeaderboard(response.data.leaderboard.slice(0, 10));
-        } else {
-          setLeaderboard([]);
-        }
-
-        setUserRank(response.data.userRank || null);
-      } catch (error) {
-        console.error("Error fetching leaderboard:", error);
-      }
-    };
-
-    fetchLeaderboard();
-  }, [currentUser]);
-
-  return (
-    <div className="leaderboard">
-      <h2>Leaderboard</h2>
-      <table className="scoreboard">
-        <thead>
-          <tr>
-            <th>Rank</th>
-            <th>Name</th>
-            <th>Best Points</th>
-            <th>Average Points</th>
-          </tr>
-        </thead>
-        <tbody>
-          {leaderboard.length > 0 ? (
-            leaderboard.map((player, index) => (
-              <tr key={index}>
-                <td>{player.rank || index + 1}</td>
-                <td>{player.name}</td>
-                <td>{player.bestPoints?.toFixed(3) ?? "N/A"}</td>
-                <td>{player.averagePoints?.toFixed(3) ?? "N/A"}</td>
-              </tr>
-            ))
-          ) : (
-            <tr>
-              <td colSpan="4">No leaderboard data available.</td>
-            </tr>
-          )}
-        </tbody>
-      </table>
-
-      {userRank && (
-        <div className="current-user-section">
-          <h3>Your Rank</h3>
-          <table className="current-user-table">
-            <thead>
-              <tr>
-                <th>Rank</th>
-                <th>Name</th>
-                <th>Best Points</th>
-                <th>Average Points</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr className="current-user">
-                <td>{userRank.rank}</td>
-                <td>{userRank.name}</td>
-                <td>{userRank.bestPoints?.toFixed(3) ?? "N/A"}</td>
-                <td>{userRank.averagePoints?.toFixed(3) ?? "N/A"}</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      )}
-    </div>
-  );
-};
-
-const ReactionGame = () => {
+const ReactionGame = ({email=""}) => {
   const [page, setPage] = useState("start");
-  const [formData, setFormData] = useState({ name: "", email: "", sex: "", phone: "", age: "" });
+  const [formData, setFormData] = useState({ name: "", email: "", age: "" });
   const [circleColor, setCircleColor] = useState("red");
   const [reactionTime, setReactionTime] = useState(0);
   const [startTime, setStartTime] = useState(null);
@@ -151,6 +23,18 @@ const ReactionGame = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    console.log("called");
+    
+    if(email!=""){
+      console.log("if called");
+      
+      setFormData((prev) => ({...prev,email:email}))
+      setPage("game");
+      setResults([]);
+    setFeedback(null);
+    setRemainingAttempts(5);
+    startGame();
+     }
   }, []);
 
   const handleFormSubmit = (e) => {
@@ -308,7 +192,7 @@ const ReactionGame = () => {
           </section>
         </div>
       )}
-      {page === "form" && <Form setFormData={setFormData} handleFormSubmit={handleFormSubmit} />}
+      {page === "form" && <Login setFormData={setFormData} handleFormSubmit={handleFormSubmit} setPage={setPage} />}
       {page === "game" && (
         <div className="game-container">
           <div className={`circle ${circleColor}`} onClick={handleCircleClick}>

@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
-import "./App.css";
+// import "./App.css";
 import Navbar from "./Components/navbar/Navbar";
 import Footer from "./Components/Footer/Footer";
 import Webinar from "./Components/webinar/Webinar";
@@ -15,6 +15,8 @@ import WebinarCountdown from "./Components/webinarcountdown/WebinarCountdown";
 import FaqSection from "./Components/Faqsection/FaqSection";
 import StartButton from "./Components/StartButton/StartButton";
 import ReactionGame from "./Components/ReactionGame/ReactionGame";
+import Login from "./Components/Login/Login"
+import Dashboard from "./Components/ReactionGame/Dashboard";
 
 const Home = () => (
   <div>
@@ -41,9 +43,12 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/reactiongame" element={<ReactionGame />} />
+        <Route path="/dashboard" element={<Dashboard/>} />
+        {/* <Route path="/login" element={<Login />} /> */}
       </Routes>
       {/* Show Footer only if the user is not on the ReactionGame page */}
       {location.pathname !== "/reactiongame" && <Footer />}
+      {location.pathname !== "/reactiongame" && <Navbar />}
     </>
   );
 };
