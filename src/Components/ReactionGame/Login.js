@@ -19,7 +19,7 @@ const Login = ({ setFormData, handleFormSubmit, setPage }) => {
   const handleLogin = () => {
     console.log("Google Login Clicked!");
     setPage("game");
-    window.open("https://google-authen.onrender.com/auth/google/", "_self");
+    window.open("https://google-authen.onrender.com/auth/google", "_self");
     //https://google-authen.onrender.com/auth/google/
   };
 
