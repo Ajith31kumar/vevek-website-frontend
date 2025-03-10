@@ -114,7 +114,7 @@ const ReactionGame = ({email=""}) => {
 
   const saveGameData = useCallback(async () => {
     try {
-      const response = await axios.post("https://vevek-website-backend-1.onrender.com/save", { ...formData, results });
+      const response = await axios.post("https://vevek-website-backend.onrender.com/save", { ...formData, results });
       setUserRank(response.data.userRank);
     } catch (error) {
       console.error("Error saving data:", error);
