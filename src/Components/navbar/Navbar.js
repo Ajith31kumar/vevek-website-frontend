@@ -5,27 +5,32 @@ import "./Navbar.css";
 
 const Navbar = () => {
   return (
-    <nav className="navbar">
-      <div className="navbar-brand">Forge Your Peak</div>
-      <div className="navbar-links">
-        <ScrollLink to="problem" smooth={true} duration={500} className="navbar-link">
-          Why Us
-        </ScrollLink>
-        <ScrollLink to="solution" smooth={true} duration={500} className="navbar-link">
-          Benefits
-        </ScrollLink>
-        <Link to="/reactiongame" className="navbar-link">ReactionGame</Link>
-        <ScrollLink to="webinarDetails" smooth={true} duration={500} className="navbar-link">
-          Schedule
-        </ScrollLink>
-        <ScrollLink to="credentials" smooth={true} duration={500} className="navbar-link">
-          About
-        </ScrollLink>
-      </div>
-      <a href="https://tagmango.app/36e3433a84" className="navbar-register" target="_blank" rel="noopener noreferrer">
-        Register Now
-      </a>
-    </nav>
+    <nav class="navbar">
+  <div class="navbar-brand">Forge Your Peak</div>
+  
+
+  <label for="navbar-toggle-checkbox" class="navbar-toggle">
+    <span></span>
+    <span></span>
+    <span></span>
+  </label>
+  
+  
+  <input type="checkbox" id="navbar-toggle-checkbox" />
+
+  <div class="navbar-links">
+    <a href="#problem" class="navbar-link">Why Us</a>
+    <a href="#solution" class="navbar-link">Benefits</a>
+    <a href="/reactiongame" class="navbar-link">ReactionGame</a>
+    <a href="#webinarDetails" class="navbar-link">Schedule</a>
+    <a href="#credentials" class="navbar-link">About</a>
+  </div>
+
+  
+  <a href="https://tagmango.app/36e3433a84" class="navbar-register" target="_blank" rel="noopener noreferrer">
+    Register Now
+  </a>
+</nav>
   );
 };
 

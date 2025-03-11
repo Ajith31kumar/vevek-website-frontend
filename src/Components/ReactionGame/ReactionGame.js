@@ -47,6 +47,7 @@ const ReactionGame = ({email=""}) => {
   };
 
   const startGame = () => {
+    console.log("game started")
     if (results.length >= maxAttempts) {
       setPage("result");
       saveGameData();
@@ -127,7 +128,9 @@ const ReactionGame = ({email=""}) => {
   };
 
   const handleTryAgain = () => {
+    console.log(page)
     setPage("game");
+    console.log(page)
     setResults([]);
     setGreenClicked(false);
     setRemainingAttempts(5);

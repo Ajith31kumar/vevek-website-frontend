@@ -32,6 +32,7 @@ const Login = ({ setFormData, handleFormSubmit, setPage }) => {
             <h1 className="hClass">Create Account</h1>
             <div onClick={handleLogin} className="social-container-l">
               <img className="googleImg" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_%22G%22_logo.svg/800px-Google_%22G%22_logo.svg.png" alt="Google Login" />
+              <span className="signin-text">Sign in with Google</span>
             </div>
             <span className="span-class">or use your email for registration</span>
             <div className="infield-l">
@@ -53,6 +54,7 @@ const Login = ({ setFormData, handleFormSubmit, setPage }) => {
             <h1 className="hClass">Sign in</h1>
             <div className="social-container-l" onClick={handleLogin}>
               <img className="googleImg" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_%22G%22_logo.svg/800px-Google_%22G%22_logo.svg.png" alt="Google Login" />
+              <span className="signin-text">Sign in with Google</span>
             </div>
             <span className="span-class">or use your account</span>
             <div className="infield-l">

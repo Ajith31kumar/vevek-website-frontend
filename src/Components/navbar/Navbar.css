@@ -1,16 +1,16 @@
 /* Navbar Styling */
 .navbar {
   display: flex;
-  justify-content: space-between; /* Equal spacing between brand, links & button */
+  justify-content: space-between;
   align-items: center;
-  background-color: #000;  /* Black background */
+  background-color: #000;
   padding: 20px 40px;
   font-family: 'Roboto', sans-serif;
-  width: 100%;  /* Full width */
-  position: fixed;  /* Fix the navbar at the top */
+  width: 100%;
+  position: fixed;
   top: 0;
   left: 0;
-  z-index: 1000;  /* Ensure it stays on top */
+  z-index: 1000;
 }
 
 /* Brand styling */
@@ -19,7 +19,7 @@
   color: #fff;
   font-weight: 700;
   text-decoration: none;
-  flex: 1; /* Takes equal space */
+  flex: 1;
   text-align: left;
 }
 
@@ -27,9 +27,9 @@
 .navbar-links {
   display: flex;
   gap: 25px;
-  flex: 2; /* Center the links with equal space */
+  flex: 2;
   justify-content: center;
-  margin-right: 200px; 
+  margin-right: 200px;
 }
 
 .navbar-link {
@@ -41,98 +41,115 @@
 }
 
 .navbar-link:hover {
-  color: #FF6347;  /* Light red hover effect */
+  color: #ff6347;
 }
 
 /* Register Button */
-/* Register Button */
 .navbar-register {
-  padding: 8px 12px;  /* Reduced padding */
-  background-color: #FF6347;
+  padding: 8px 12px;
+  background-color: #ff6347;
   color: white;
   text-decoration: none;
-  font-size: 14px;  /* Smaller font */
+  font-size: 14px;
   font-weight: 600;
   border-radius: 5px;
-  max-width: 120px; /* Restrict button width */
+  max-width: 120px;
   transition: background-color 0.3s ease-in-out;
-
-  /* Move slightly to the left */
-  margin-right: 80px; 
+  margin-right: 80px;
 }
 
 .navbar-register:hover {
-  background-color: #E5533B;  /* Darker red on hover */
+  background-color: #e5533b;
 }
 
+/* Hamburger Menu Icon (Hidden by Default) */
+.navbar-toggle {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+}
 
+.navbar-toggle span {
+  height: 3px;
+  width: 25px;
+  background-color: #fff;
+  margin: 4px 0;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Hidden Checkbox for Toggle Functionality */
+#navbar-toggle-checkbox {
+  display: none;
+}
 
 /* Responsive Design */
 @media (max-width: 1024px) {
   .navbar {
-      padding: 15px 30px;
+    padding: 15px 30px;
   }
-  
+
   .navbar-links {
-      gap: 20px;
+    gap: 20px;
   }
 
   .navbar-register {
-      font-size: 16px;
-      padding: 10px 20px;
+    font-size: 16px;
+    padding: 10px 20px;
   }
 }
 
 @media (max-width: 768px) {
   .navbar {
-      flex-direction: column;
-      align-items: center;
-      padding: 15px 20px;
+    padding: 15px 20px;
+    flex-wrap: wrap;
   }
 
   .navbar-links {
-      width: 100%;
-      justify-content: center;
-      margin-top: 10px;
-  }
-
-  .navbar-links {
-      flex-direction: column;
-      gap: 10px;
-  }
-
-  .navbar-link {
-      font-size: 16px;
+    display: none;
+    width: 100%;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 10px;
   }
 
   .navbar-register {
-      margin-top: 10px;
-      padding: 10px 18px;
-      font-size: 16px;
+    margin-top: 10px;
+    padding: 10px 18px;
+    font-size: 16px;
+  }
+
+  /* Show Hamburger Menu */
+  .navbar-toggle {
+    display: flex;
+  }
+
+  /* Toggle Navbar Links When Checkbox is Checked */
+  #navbar-toggle-checkbox:checked ~ .navbar-links {
+    display: flex;
   }
 }
 
 @media (max-width: 480px) {
   .navbar {
-      padding: 10px 15px;
+    padding: 10px 15px;
   }
 
   .navbar-brand {
-      font-size: 24px;
-      text-align: center;
+    font-size: 24px;
+    text-align: center;
   }
 
   .navbar-links {
-      gap: 8px;
+    gap: 8px;
   }
 
   .navbar-link {
-      font-size: 15px;
+    font-size: 15px;
   }
 
   .navbar-register {
-      padding: 8px 15px;
-      font-size: 15px;
-      text-align: center;
+    padding: 8px 15px;
+    font-size: 15px;
+    text-align: center;
   }
 }
