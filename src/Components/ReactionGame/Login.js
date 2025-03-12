@@ -21,7 +21,7 @@ const Login = ({ setFormData, handleFormSubmit, setPage }) => {
     setPage("game");
     window.open("https://google-authen.onrender.com/auth/google/", "_self");
     //https://google-authen.onrender.com/auth/google/
-  };
+  };//http://localhost:8080/auth/google
 
   return (
     <div className="bodyClass">
@@ -29,8 +29,9 @@ const Login = ({ setFormData, handleFormSubmit, setPage }) => {
         {/* Sign Up Form */}
         <div className="form-container-l sign-up-container-l">
           <form className="formClass" onSubmit={handleFormSubmit}>
-            <h1 className="hClass">Create Account</h1>
+           
             <div onClick={handleLogin} className="social-container-l">
+            <h1 className="hClass">Create Account</h1>
               <img className="googleImg" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_%22G%22_logo.svg/800px-Google_%22G%22_logo.svg.png" alt="Google Login" />
               <span className="signin-text">Sign in with Google</span>
             </div>
@@ -43,6 +44,19 @@ const Login = ({ setFormData, handleFormSubmit, setPage }) => {
             </div>
             <div className="infield-l">
               <input type="number" name="age" placeholder="Age" min="1" max="120" onChange={(e) => setFormData((prev) => ({ ...prev, age: e.target.value }))} required />
+            </div>
+             {/* Gender Selection - Dropdown */}
+             <div className="infield-l">
+              <label className="span-class">Gender:</label>
+              <select
+                required
+                
+                onChange={(e) => setFormData((prev) => ({ ...prev, sex: e.target.value }))}
+              >
+                <option value="">Select Gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+              </select>
             </div>
             <button className="button-class" type="submit">Sign Up</button>
           </form>

@@ -8,8 +8,9 @@ const Leaderboard = ({ currentUser }) => {
   useEffect(() => {
     const fetchLeaderboard = async () => {
       try {
-        const response = await axios.get("https://vevek-website-backend-2.onrender.com/leaderboard", {
-          // https:vevek-website-backend-1.onrender.com
+        const response = await axios.get(" https://vevek-website-backend-2.onrender.com/leaderboard", {
+          //http://localhost:3000/
+          // ttps://vevek-website-backend-2.onrender.com
           params: { email: currentUser?.email },
         });
 

@@ -66,6 +66,7 @@
 
 .hClass {
   color: var(--grad-clr1);
+ 
 }
 
 .social-container-l {
@@ -74,6 +75,7 @@
 
 .span-class {
   font-size: 12px;
+  color: #141e30;
 }
 
 .infield-l {
@@ -198,11 +200,7 @@ input:focus ~ label {
   }
 }
 
-.googleImg {
-  width: 2rem;
-  height: 2rem;
-  size: 2rem;
-}
+
 
 .social-container-l {
   display: flex;
@@ -212,12 +210,13 @@ input:focus ~ label {
   width: 100%;
   padding: 10px 0;
   cursor: pointer;
+  margin-bottom: 30px;
 }
 
 .googleImg {
   width: 50px;
   height: 50px;
-  margin-bottom: 10px;
+  margin-bottom: 6px;
 }
 
 .signin-text {
@@ -292,3 +291,51 @@ input:focus ~ label {
     padding: 8px 20px; /* Adjusted button padding */
   }
 }
+select {
+  width: 100%;
+  padding: 12px 15px;
+  background-color: #f3f3f3;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.button-class {
+  font-size: 20px; /* Reduced from 12px */
+  padding: 8px 20px; /* Adjusted padding */
+}
+
+.formClass {
+  padding: 0 15px; /* Slightly reduced padding */
+}
+
+input, select {
+  font-size: 14px; /* Reduced text size */
+  
+}
+
+@media (max-width: 480px) {
+  .button-class {
+    font-size: 9px; /* Further reduced for mobile */
+    padding: 6px 15px;
+  }
+}
+.form-container-l {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Center vertically */
+  align-items: center; /* Center horizontally */
+  height: 90vh; /* Adjust height to fit better */
+}
+
+.formClass {
+  width: 100%; /* Maintain full width */
+  max-width: 400px; /* Keep a proper size */
+  padding: 20px; /* Give enough padding */
+}
+
+.button-class {
+  margin-bottom: 80px; /* Add space above the button */
+}
+
+
