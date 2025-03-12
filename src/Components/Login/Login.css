@@ -1,4 +1,4 @@
-/* @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
 
 * {
   padding: 0;
@@ -12,7 +12,7 @@
   --grad-clr2: #243b55;
 }
 
-body {
+.bodyClass {
   height: 100vh;
   background: #f6f5f7;
   display: flex;
@@ -21,71 +21,64 @@ body {
   font-family: "Poppins", sans-serif;
 }
 
-.container {
+.container-l {
   position: relative;
-  width: 850px;
-  height: 500px;
+  width: 90%; /* Adjusted for smaller screens */
+  max-width: 850px; /* Maximum width for larger screens */
+  height: auto; /* Adjusted for smaller screens */
+  min-height: 500px; /* Minimum height */
   background-color: #fff;
   box-shadow: 25px 30px 55px #5557;
   border-radius: 13px;
   overflow: hidden;
 }
 
-.form-container {
+.form-container-l {
   position: absolute;
   top: 0;
   height: 100%;
   transition: all 0.6s ease-in-out;
 }
 
-.sign-in-container {
+.sign-in-container-l {
   left: 0;
   width: 50%;
   z-index: 2;
 }
 
-.sign-up-container {
+.sign-up-container-l {
   left: 0;
   width: 50%;
   opacity: 0;
   z-index: 1;
 }
 
-form {
+.formClass {
   background-color: #fff;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 0 50px;
+  padding: 0 20px; /* Adjusted padding for smaller screens */
   height: 100%;
   text-align: center;
 }
 
-h1 {
+.hClass {
   color: var(--grad-clr1);
+ 
 }
 
-.social-container {
+.social-container-l {
   margin: 20px 0;
 }
 
-.social-container a {
-  border: 1px solid #ddd;
-  border-radius: 50%;
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0 5px;
-  height: 40px;
-  width: 40px;
-}
-
-span {
+.span-class {
   font-size: 12px;
+  color: #141e30;
 }
 
-.infield {
+.infield-l {
   position: relative;
   margin: 8px 0;
   width: 100%;
@@ -99,34 +92,11 @@ input {
   outline: none;
 }
 
-label {
-  position: absolute;
-  left: 50%;
-  top: 100%;
-  transform: translateX(-50%);
-  width: 0%;
-  height: 2px;
-  background-color: var(--linear-grad);
-  transition: 0.3s;
-}
-
 input:focus ~ label {
   width: 100%;
 }
 
-a {
-  color: #333;
-  font-size: 14px;
-  text-decoration: none;
-  margin: 15px 0;
-}
-
-a.forgot {
-  padding-bottom: 3px;
-  border-bottom: 2px solid #eee;
-}
-
-button {
+.button-class {
   border-radius: 20px;
   border: 1px solid var(--grad-clr1);
   background: var(--grad-clr2);
@@ -139,7 +109,7 @@ button {
   cursor: pointer;
 }
 
-button.ghost {
+.button-class .ghost {
   background: transparent;
   border-color: #fff;
 }
@@ -153,23 +123,6 @@ button.ghost {
   overflow: hidden;
   transition: transform 0.6s ease-in-out;
   z-index: 100;
-}
-
-.radio-group {
-  display: flex;
-  gap: 10px;
-  margin-top: 8px;
-  align-items: center;
-}
-
-.radio-group label {
-  font-size: 14px;
-  color: #333;
-  cursor: pointer;
-}
-
-.radio-group input[type="radio"] {
-  margin-right: 5px;
 }
 
 .overlay {
@@ -189,7 +142,7 @@ button.ghost {
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  padding: 0 40px;
+  padding: 0 20px; /* Adjusted padding for smaller screens */
   text-align: center;
   top: 0;
   height: 100%;
@@ -207,27 +160,27 @@ button.ghost {
   transform: translateX(0);
 }
 
-.container.right-panel-active .overlay-container {
+.container-l.right-panel-active .overlay-container {
   transform: translateX(-100%);
 }
 
-.container.right-panel-active .overlay {
+.container-l.right-panel-active .overlay {
   transform: translateX(50%);
 }
 
-.container.right-panel-active .overlay-left {
+.container-l.right-panel-active .overlay-left {
   transform: translateX(0);
 }
 
-.container.right-panel-active .overlay-right {
+.container-l.right-panel-active .overlay-right {
   transform: translateX(20%);
 }
 
-.container.right-panel-active .sign-in-container {
+.container-l.right-panel-active .sign-in-container-l {
   transform: translateX(100%);
 }
 
-.container.right-panel-active .sign-up-container {
+.container-l.right-panel-active .sign-up-container-l {
   transform: translateX(100%);
   opacity: 1;
   z-index: 5;
@@ -245,4 +198,144 @@ button.ghost {
     opacity: 1;
     z-index: 5;
   }
-} */
+}
+
+
+
+.social-container-l {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 10px 0;
+  cursor: pointer;
+  margin-bottom: 30px;
+}
+
+.googleImg {
+  width: 50px;
+  height: 50px;
+  margin-bottom: 6px;
+}
+
+.signin-text {
+  background-color: #ffffff;
+  color: #555;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 12px 20px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  text-align: center;
+  display: inline-block;
+  width: 100%;
+  max-width: 250px;
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+.social-container-l:hover .signin-text {
+  background-color: #4285F4;
+  color: #fff;
+  border-color: #4285F4;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+  .container-l {
+    width: 95%; /* Adjusted for tablets and smaller screens */
+    height: auto;
+    min-height: 400px; /* Adjusted height */
+  }
+
+  .formClass {
+    padding: 0 10px; /* Reduced padding for smaller screens */
+  }
+
+  .overlay-panel {
+    padding: 0 10px; /* Reduced padding for smaller screens */
+  }
+
+  .button-class {
+    padding: 10px 30px; /* Adjusted button padding */
+  }
+}
+
+@media (max-width: 480px) {
+  .container-l {
+    width: 100%; /* Full width for mobile devices */
+    height: auto;
+    min-height: 300px; /* Adjusted height */
+  }
+
+  .form-container-l {
+    width: 100%; /* Full width for mobile devices */
+  }
+
+  .sign-in-container-l,
+  .sign-up-container-l {
+    width: 100%; /* Full width for mobile devices */
+  }
+
+  .overlay-container {
+    display: none; /* Hide overlay on small screens */
+  }
+
+  .container-l.right-panel-active .sign-in-container-l,
+  .container-l.right-panel-active .sign-up-container-l {
+    transform: translateX(0); /* Reset transform for mobile */
+  }
+
+  .button-class {
+    font-size: 10px; /* Smaller font size for buttons */
+    padding: 8px 20px; /* Adjusted button padding */
+  }
+}
+select {
+  width: 100%;
+  padding: 12px 15px;
+  background-color: #f3f3f3;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.button-class {
+  font-size: 20px; /* Reduced from 12px */
+  padding: 8px 20px; /* Adjusted padding */
+}
+
+.formClass {
+  padding: 0 15px; /* Slightly reduced padding */
+}
+
+input, select {
+  font-size: 14px; /* Reduced text size */
+  
+}
+
+@media (max-width: 480px) {
+  .button-class {
+    font-size: 9px; /* Further reduced for mobile */
+    padding: 6px 15px;
+  }
+}
+.form-container-l {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Center vertically */
+  align-items: center; /* Center horizontally */
+  height: 90vh; /* Adjust height to fit better */
+}
+
+.formClass {
+  width: 100%; /* Maintain full width */
+  max-width: 400px; /* Keep a proper size */
+  padding: 20px; /* Give enough padding */
+}
+
+.button-class {
+  margin-bottom: 80px; /* Add space above the button */
+}
+
+
