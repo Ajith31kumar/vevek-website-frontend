@@ -1,0 +1,45 @@
+.demographics-form {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    text-align: center;
+  }
+  
+  .demographics-form h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .demographics-form .infield-l {
+    margin-bottom: 15px;
+  }
+  
+  .demographics-form input,
+  .demographics-form select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .demographics-form .button-class {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .demographics-form .button-class:hover {
+    background-color: #0056b3;
+  }
+ .h1form{
+   color: #141e30; 
+
+  }
