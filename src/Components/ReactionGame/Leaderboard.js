@@ -8,19 +8,14 @@ const Leaderboard = ({ currentUser }) => {
   useEffect(() => {
     const fetchLeaderboard = async () => {
       try {
-        const response = await axios.get("https://vevek-website-backend-2.onrender.com/leaderboard", {
+        const response = await axios.get(" https://vevek-website-backend-2.onrender.com/leaderboard", {
+          //http://localhost:3000/
+          // ttps://vevek-website-backend-2.onrender.com
           params: { email: currentUser?.email },
         });
 
         if (Array.isArray(response.data.leaderboard)) {
-          // Filter out invalid bestPoints, sort descending, and take top 10
-          const filteredLeaderboard = response.data.leaderboard
-          .filter(player => player.bestPoints !== null && player.bestPoints > 0.150 && player.name.trim() !== "")
-          .sort((a, b) => b.bestPoints - a.bestPoints)
-          .slice(0, 10);
-        
-        setLeaderboard(filteredLeaderboard);
-        
+          setLeaderboard(response.data.leaderboard.slice(0, 10));
         } else {
           setLeaderboard([]);
         }
@@ -47,7 +42,7 @@ const Leaderboard = ({ currentUser }) => {
           </tr>
         </thead>
         <tbody>
-          {Array.isArray(leaderboard) && leaderboard.length > 0 ? (
+          {leaderboard.length > 0 ? (
             leaderboard.map((player, index) => (
               <tr key={index}>
                 <td>{player.rank || index + 1}</td>
