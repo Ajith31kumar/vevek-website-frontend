@@ -146,16 +146,16 @@ const ReactionGame = ({ email = "" }) => {
   };
 
   const handleTryAgain = () => {
-    setPage("game");  // Go back to the game page
-    setRemainingAttempts(5);
-    setResults([]);
-    setReactionTime(null);
-    setCircleColor("red");
-    setGreenClicked(false);
-    setStartTime(null);
-    setFeedback("");
-  };
-  
+  setPage("game");  // Go back to the game page
+  setRemainingAttempts(5);
+  setResults([]);
+  setReactionTime(null);
+  setCircleColor("red");
+  setGreenClicked(false);
+  setStartTime(null);
+  setFeedback("");
+};
+
   return (
     <div>
       {page === "start" && (
@@ -180,15 +180,6 @@ const ReactionGame = ({ email = "" }) => {
         </div>
       )}
       {page === "form" && <Login setFormData={setFormData} handleFormSubmit={handleFormSubmit} setPage={setPage} />}
-      {page === "game" && (
-        <div className="game-container">
-          <div className={`circle ${circleColor}`} onClick={handleCircleClick}>
-            {feedback && <span className="feedback">{feedback}</span>}
-          </div>
-          <p className="reaction-timer">Reaction Time: {reactionTime} sec</p>
-          <p className="remaining-attempts">Remaining Attempts: {remainingAttempts}</p>
-        </div>
-      )}
       {page === "game" && (
         <div className="game-layout">
           {/* Left Side - Instructions */}

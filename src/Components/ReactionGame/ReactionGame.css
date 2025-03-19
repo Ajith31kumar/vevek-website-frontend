@@ -719,3 +719,139 @@ body {
 .results-container {
   text-align: center;
 }
+
+.instructions left instructions right{
+  color: #1e1e1e;
+}
+
+
+/* Game Layout */
+.game-layout {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 90%;
+  max-width: 1200px;
+  gap: 20px;
+}
+
+/* Game Area */
+.game-container {
+  flex: 2;
+  min-width: 340px;
+  max-width: 450px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: #fff;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* Game Ball */
+.circle {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: opacity 0.3s ease, background-color 0.3s ease, transform 0.2s ease-in-out;
+}
+
+/* Ball Colors */
+.circle.red {
+  background-color: red;
+}
+
+.circle.green {
+  background-color: green;
+}
+
+/* Hide Ball */
+
+
+/* Ball Click Animation */
+
+
+/* Reaction Timer & Remaining Attempts */
+.reaction-timer,
+.remaining-attempts {
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.remaining-attempts {
+  color: red; /* Highlight important info */
+}
+
+/* Instructions */
+.instructions {
+  flex: 1;
+  min-width: 280px;
+  max-width: 350px;
+
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  text-align: center;
+}
+
+.instructions.left, .instructions.right {
+  color: #1e1e1e;
+}
+
+
+
+/* Results Container */
+.results-container {
+  text-align: center;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .game-layout {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .instructions {
+    width: 90%;
+  }
+
+  .game-container {
+    width: 90%;
+  }
+}
+
+@media (max-width: 600px) {
+  .game-layout {
+    flex-direction: column;
+    width: 95%;
+  }
+
+  .instructions {
+    padding: 15px;
+    font-size: 14px;
+  }
+
+  .circle {
+    width: 80px;
+    height: 80px;
+  }
+
+  .reaction-timer,
+  .remaining-attempts {
+    font-size: 18px;
+  }
+}

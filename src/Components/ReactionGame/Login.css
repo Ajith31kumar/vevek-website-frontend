@@ -12,6 +12,7 @@
   --grad-clr2: #243b55;
 }
 
+/* Ensure the body takes full height and centers the container */
 .bodyClass {
   height: 100vh;
   background: #f6f5f7;
@@ -21,18 +22,43 @@
   font-family: "Poppins", sans-serif;
 }
 
+/* Container for the login page */
 .container-l {
   position: relative;
-  width: 90%; /* Adjusted for smaller screens */
+  width: 90%; /* Adjusts for smaller screens */
   max-width: 850px; /* Maximum width for larger screens */
-  height: auto; /* Adjusted for smaller screens */
-  min-height: 500px; /* Minimum height */
+  height: auto; /* Adjusts height based on content */
+  min-height: 500px; /* Minimum height to ensure it looks good */
   background-color: #fff;
   box-shadow: 25px 30px 55px #5557;
   border-radius: 13px;
   overflow: hidden;
+  margin: auto; /* Ensures it stays centered */
 }
 
+/* Media Queries for Desktop Sizes */
+@media (min-width: 1024px) {
+  .container-l {
+    width: 70%; /* Slightly narrower for very large screens */
+    max-width: 1000px; /* Increase max-width for larger desktops */
+  }
+}
+
+@media (min-width: 1440px) {
+  .container-l {
+    width: 60%; /* Even narrower for extra-large screens */
+    max-width: 1200px; /* Increase max-width for extra-large desktops */
+  }
+}
+
+@media (min-width: 1920px) {
+  .container-l {
+    width: 50%; /* Narrower for ultra-wide screens */
+    max-width: 1400px; /* Increase max-width for ultra-wide desktops */
+  }
+}
+
+/* Rest of your existing CSS */
 .form-container-l {
   position: absolute;
   top: 0;
@@ -59,14 +85,13 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 0 20px; /* Adjusted padding for smaller screens */
+  padding: 0 20px;
   height: 100%;
   text-align: center;
 }
 
 .hClass {
   color: var(--grad-clr1);
- 
 }
 
 .social-container-l {
@@ -142,7 +167,7 @@ input:focus ~ label {
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  padding: 0 20px; /* Adjusted padding for smaller screens */
+  padding: 0 20px;
   text-align: center;
   top: 0;
   height: 100%;
@@ -200,8 +225,6 @@ input:focus ~ label {
   }
 }
 
-
-
 .social-container-l {
   display: flex;
   flex-direction: column;
@@ -240,6 +263,14 @@ input:focus ~ label {
   border-color: #4285F4;
 }
 
+select {
+  width: 100%;
+  padding: 12px 15px;
+  background-color: #f3f3f3;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
 /* Media Queries for Responsiveness */
 @media (max-width: 768px) {
   .container-l {
@@ -290,52 +321,53 @@ input:focus ~ label {
     font-size: 10px; /* Smaller font size for buttons */
     padding: 8px 20px; /* Adjusted button padding */
   }
-}
-select {
-  width: 100%;
-  padding: 12px 15px;
-  background-color: #f3f3f3;
-  border: none;
-  outline: none;
-  cursor: pointer;
-}
 
-.button-class {
-  font-size: 20px; /* Reduced from 12px */
-  padding: 8px 20px; /* Adjusted padding */
-}
+  .formClass {
+    padding: 0 15px; /* Slightly reduced padding */
+  }
 
-.formClass {
-  padding: 0 15px; /* Slightly reduced padding */
-}
-
-input, select {
-  font-size: 14px; /* Reduced text size */
-  
-}
-
-@media (max-width: 480px) {
-  .button-class {
-    font-size: 9px; /* Further reduced for mobile */
-    padding: 6px 15px;
+  input, select {
+    font-size: 14px; /* Reduced text size */
   }
 }
-.form-container-l {
-  display: flex;
-  flex-direction: column;
-  justify-content: center; /* Center vertically */
-  align-items: center; /* Center horizontally */
-  height: 90vh; /* Adjust height to fit better */
+
+@media (max-width: 320px) {
+  .button-class {
+    font-size: 9px; /* Further reduced for very small screens */
+    padding: 6px 15px;
+  }
+
+  .formClass {
+    padding: 0 10px; /* Further reduced padding */
+  }
+
+  input, select {
+    font-size: 12px; /* Further reduced text size */
+  }
 }
+@media (max-width: 768px) {
+  .container-l {
+    width: 95%;
+    min-height: auto;
+    padding: 20px 10px; /* Extra padding for spacing */
+  }
 
-.formClass {
-  width: 100%; /* Maintain full width */
-  max-width: 400px; /* Keep a proper size */
-  padding: 20px; /* Give enough padding */
+  .formClass {
+    padding: 10px 15px; /* Reduced padding */
+  }
+
+  .overlay-container {
+    position: relative; /* Prevent absolute issues */
+    width: 100%;
+  }
+
+  .button-class {
+    padding: 10px 25px; /* Adjusted padding */
+    font-size: 14px;
+  }
+
+  input, select {
+    font-size: 16px; /* Slightly bigger for better usability */
+    padding: 10px;
+  }
 }
-
-.button-class {
-  margin-bottom: 80px; /* Add space above the button */
-}
-
-
